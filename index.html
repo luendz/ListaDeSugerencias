@@ -235,6 +235,20 @@
     </div>
 
  <div class="gift-grid">
+<a class="btn-manual"
+   target="_blank"
+   href="https://docs.google.com/forms/d/e/1FAIpQLSe6f5mQdNNUAsN_GjoWmi021vLE2WTo5HouLBZ2juRgVm1sAA/viewform?usp=pp_url&entry.952640550=mecedora_electronica">
+  Marcar como reservado
+</a>
+
+<div class="gift-card" data-id="mecedora_electronica">
+  ...
+  <button class="btn-manual"
+          onclick="reserveGift('mecedora_electronica', this)">
+    Marcar como reservado
+  </button>
+</div>
+
 
     <div class="gift-card" style="border: 4px solid var(--swamp-dark); background-color: var(--cream);">
             <div class="gift-image" style="background: var(--shrek-green);">📦✨</div>
@@ -249,18 +263,6 @@
                     <a href="https://wa.me/51925963490?text=Hola%20te%20sugerimos%20revisar%20el%20catálogo" target="_blank" class="btn-option" style="background-color: #25D366; color: #fff; border: none; display: flex; align-items: center; justify-content: center; gap: 8px;">
                         💬 WhatsApp BabySteps
                     </a>
-                </div>
-            </div>
-        </div>
-        
-       <div class="gift-card">
-            <div class="gift-image">👶⚡</div>
-            <div class="gift-info">
-                <h3>Catálogo en general</h3>
-                <div class="options-container">
-                    <a href="https://www.promart.pe/mecedora-para-bebe-automatica-bluetooth-con-mosquitero-1000705497/p" target="_blank" class="btn-option">Promart</a>
-                    <a href="https://www.falabella.com.pe/falabella-pe/product/882946603/cuna-moises-musical-bebe-6-en-1-mecedora-priori/882946604" target="_blank" class="btn-option">Falabella</a>
-                    <a href="https://www.mercadolibre.com.pe/silla-mecedora-para-bebe-infanti-nido-plegable-grisrosado/p/MPE19535494" target="_blank" class="btn-option">Mercado Libre</a>
                 </div>
             </div>
         </div>
@@ -597,6 +599,54 @@
     window.onload = () => document.getElementById('welcomeModal').style.display = 'flex';
     const closeModal = () => document.getElementById('welcomeModal').style.display = 'none';
 </script>
+
+<script>
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwoqUq7AK-5O0WH7cHOuiByz9xgfEnDOXgIXseMSlC4hnKAeBTb70k2S5Kx6A72zeDhSA/exec";
+
+  async function reserveGift(id, btn) {
+    try {
+      btn.disabled = true;
+      const url = `${SCRIPT_URL}?action=reserve&id=${encodeURIComponent(id)}`;
+      const res = await fetch(url, { method: "GET", cache: "no-store" });
+
+      const text = await res.text();      // lee crudo
+      console.log("RAW RESPONSE:", text); // imprime crudo
+
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch (e) {
+        console.error("No es JSON válido:", e);
+        alert("La respuesta del servidor no es JSON. Revisa consola.");
+        btn.disabled = false;
+        return;
+      }
+
+      console.log("PARSED JSON:", data);
+
+      if (!data.ok) {
+        alert("No se pudo reservar: " + JSON.stringify(data));
+        btn.disabled = false;
+        return;
+      }
+
+      const card = btn.closest(".gift-card");
+      if (card) {
+        card.style.opacity = "0.55";
+        card.style.filter = "grayscale(1)";
+      }
+
+      btn.textContent = "Reservado";
+      btn.style.pointerEvents = "none";
+    } catch (e) {
+      console.error("FETCH ERROR:", e);
+      alert("Error de red o CORS. Mira la consola (F12).");
+      btn.disabled = false;
+    }
+  }
+</script>
+
+
 
 </body>
 </html>
