@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sugerencias Baby Shower - Luan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --shrek-green: #C4D300;
+            --soft-green: #E8F5E9;
+            --brown-vest: #5C4033;
+            --swamp-dark: #4A5D23;
+            --cream: #FFF9E3;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--soft-green);
+            background-image: radial-gradient(circle, #dcedc8 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* --- Modal --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(74, 93, 35, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-content {
+            background: var(--cream);
+            padding: 30px;
+            border-radius: 40px;
+            max-width: 450px;
+            width: 85%;
+            text-align: center;
+            border: 8px solid var(--shrek-green);
+            box-shadow: 0 15px 0 var(--brown-vest);
+            animation: bounceIn 0.6s ease;
+        }
+
+        .modal-content img {
+            width: 180px;
+            margin-bottom: 15px;
+            border-radius: 20px;
+        }
+
+        /* --- Header --- */
+        header {
+            background-color: var(--shrek-green);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 10px solid var(--brown-vest);
+        }
+
+        .img-bienvenidos {
+            max-width: 600px;
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 5px 5px rgba(0,0,0,0.2));
+            margin-bottom: 10px;
+        }
+
+        /* --- Cuadro de Sugerencia --- */
+        .sugerencia-container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 25px;
+            background-color: var(--cream);
+            border: 3px dashed var(--swamp-dark);
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .sugerencia-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--brown-vest);
+            font-weight: 600;
+            margin: 0;
+        }
+
+        /* --- Grid de Regalos --- */
+        .container {
+            max-width: 1100px;
+            margin: 20px auto 50px auto;
+            padding: 0 20px;
+        }
+
+        .gift-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .gift-card {
+            background: white;
+            border-radius: 30px;
+            border: 3px solid #d1e0a3;
+            overflow: hidden;
+            text-align: center;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 15px;
+        }
+
+        .gift-card:hover { transform: translateY(-5px); }
+
+        .gift-image {
+            height: 120px;
+            background: #f1f8e9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            border-bottom: 3px dashed var(--shrek-green);
+        }
+
+        .gift-info { padding: 15px; flex-grow: 1; display: flex; flex-direction: column; }
+        
+        .gift-info h3 {
+            font-family: 'Fredoka One', cursive;
+            color: var(--swamp-dark);
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .btn-option {
+            background-color: var(--soft-green);
+            color: var(--brown-vest);
+            text-decoration: none;
+            padding: 8px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            border: 2px solid var(--shrek-green);
+            transition: 0.3s;
+        }
+
+        .btn-option:hover { background-color: var(--shrek-green); }
+
+        .btn-manual {
+            background-color: var(--brown-vest);
+            color: white;
+            padding: 10px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            margin-top: 10px;
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: var(--brown-vest);
+            color: var(--shrek-green);
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="modal-overlay" id="welcomeModal">
+    <div class="modal-content">
+        <img src="bebe_shrek.png" alt="Shrek Baby">
+        <p><b>Tíos y tías</b>, junto a mis papis les dejamos algunas sugerencias; pero queremos que sepan que todo lo que nos regalen con cariño será recibido como una bendición.</p>
+        <button class="btn-option" onclick="closeModal()" style="cursor:pointer; padding: 10px 20px;">¡Entrar al Pantano!</button>
+    </div>
+</div>
+
+<header>
+    <img src="letras_bienvenidos.png" class="img-bienvenidos" alt="Bienvenidos">
+    <h1 style="font-family: 'Fredoka One'; color: white; text-shadow: 2px 2px var(--brown-vest);">LISTA DE SUGERENCIAS</h1>
+</header>
+
+<div class="container">
+    <div class="sugerencia-container">
+         <p class="sugerencia-text">
+            Las sugerencias que les dejamos pueden encontrarlas en su tienda favorita, desde la más elegante hasta la más caserita… ¡todo vale! 
+            <br><br>
+            Las referencias son solo una guía, así que pueden ir al mercado, la cachina, el hueco o donde el corazón (y el bolsillo) los lleve 😄
+            <br><br>
+            Sabemos que algunos regalitos pueden ser un poquito más costosos, por eso también les dejamos la idea de que, si desean, pueden juntarse entre varios para regalarnos algo con mucho cariño.
+        </p>
+    </div>
+
+ <div class="gift-grid">
+
+    <div class="gift-card" style="border: 4px solid var(--swamp-dark); background-color: var(--cream);">
+            <div class="gift-image" style="background: var(--shrek-green);">📦✨</div>
+            <div class="gift-info">
+                <h3 style="margin-bottom: 5px;">Catálogos y Contactos</h3>
+                <p style="font-size: 0.85rem; margin-bottom: 15px;">Consulta aquí opciones variadas y económicas:</p>
+                
+                <div class="options-container">
+                    <a href="https://www.tiktok.com/@dzimportaciones/video/7561204716227611911" target="_blank" class="btn-option" style="background-color: #000; color: #fff; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                        🎬 Tiktok DZ Importaciones
+                    </a>
+                    <a href="https://wa.me/51925963490?text=Hola%20te%20sugerimos%20revisar%20el%20catálogo" target="_blank" class="btn-option" style="background-color: #25D366; color: #fff; border: none; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                        💬 WhatsApp BabySteps
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+       <div class="gift-card">
+            <div class="gift-image">👶⚡</div>
+            <div class="gift-info">
+                <h3>Catálogo en general</h3>
+                <div class="options-container">
+                    <a href="https://www.promart.pe/mecedora-para-bebe-automatica-bluetooth-con-mosquitero-1000705497/p" target="_blank" class="btn-option">Promart</a>
+                    <a href="https://www.falabella.com.pe/falabella-pe/product/882946603/cuna-moises-musical-bebe-6-en-1-mecedora-priori/882946604" target="_blank" class="btn-option">Falabella</a>
+                    <a href="https://www.mercadolibre.com.pe/silla-mecedora-para-bebe-infanti-nido-plegable-grisrosado/p/MPE19535494" target="_blank" class="btn-option">Mercado Libre</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="gift-card">
+            <div class="gift-image">👶⚡</div>
+            <div class="gift-info">
+                <h3>Mecedora Electrónica</h3>
+                <div class="options-container">
+                    <a href="https://www.promart.pe/mecedora-para-bebe-automatica-bluetooth-con-mosquitero-1000705497/p" target="_blank" class="btn-option">Promart</a>
+                    <a href="https://www.falabella.com.pe/falabella-pe/product/882946603/cuna-moises-musical-bebe-6-en-1-mecedora-priori/882946604" target="_blank" class="btn-option">Falabella</a>
+                    <a href="https://www.mercadolibre.com.pe/silla-mecedora-para-bebe-infanti-nido-plegable-grisrosado/p/MPE19535494" target="_blank" class="btn-option">Mercado Libre</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="gift-card">
+            <div class="gift-image">☁️</div>
+            <div class="gift-info">
+                <h3>Almohada de Lactancia</h3>
+                <div class="options-container">
+                    <a href="https://juntoz.com/producto/almohada-de-lactancia-y-estimulacion-5-en-1-azul-apego-23934517matal05aap0503202408395708806" target="_blank" class="btn-option">Juntoz</a>
+                    <a href="https://www.falabella.com.pe/falabella-pe/product/prod17850612/Almohada-de-Lactancia-y-Estimulacion-Apego/20403677" target="_blank" class="btn-option">Falabella</a>
+                    <a href="https://www.mercadolibre.com.pe/cojin-de-lactancia-bebe-anti-reflujo-ideal-para-cesaria/up/MPEU2457477579" target="_blank" class="btn-option">Mercado Libre</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="gift-card">
+            <div class="gift-image">🎨</div>
+            <div class="gift-info">
+                <h3>Juegos Didácticos</h3>
+                <div class="options-container">
+                    <a href="https://www.tailoy.com.pe/escolar/materiales-didacticos/juegos-didacticos.html" target="_blank" class="btn-option">Ver en Tai Loy</a>
+                    <a href="https://www.tiktok.com/@dzimportaciones/video/7561204716227611911" target="_blank" class="btn-option">Video Referencia</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="gift-card">
+            <div class="gift-image">👕</div>
+            <div class="gift-info">
+                <h3>Ropa de Bebé</h3>
+                <div class="options-container">
+                    <a href="https://www.puntobebe.com.pe/sub-category/algodon-pima-3" target="_blank" class="btn-option">Punto Bebé (Pima)</a>
+                    <a href="https://www.plazavea.com.pe/moda-infantil/ropa-bebe-nino" target="_blank" class="btn-option">Plaza Vea</a>
+                    <a href="https://pe.hm.com/bebes/recien-nacido" target="_blank" class="btn-option">H&M Recién Nacido</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="gift-card">
+            <div class="gift-image">🍼⚡</div>
+            <div class="gift-info">
+                <h3>Extractor Eléctrico</h3>
+                <div class="options-container">
+                    <a href="https://www.mercadolibre.com.pe/extractor-leche-sacaleche-electrico-doble-potente/up/MPEU2462468358" target="_blank" class="btn-option">Mercado Libre</a>
+                    <a href="https://www.coolbox.pe/extractor-de-leche-inalambrico-portatil-pantalla-led-rosado-100434538/p" target="_blank" class="btn-option">Coolbox</a>
+                    <a href="https://www.falabella.com.pe/falabella-pe/product/146349062/extractor-de-leche-materno-s22-con-3-modos-y-15-niveles/146349063" target="_blank" class="btn-option">Falabella</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="gift-card">
+            <div class="gift-image">🍼✋</div>
+            <div class="gift-info">
+                <h3>Extractor Manual</h3>
+                <div class="options-container">
+                    <a href="https://www.carestino.com.pe/producto/extractor-de-leche-manual-con-biberon-gris/" target="_blank" class="btn-option">Carestino</a>
+                    <a href="https://www.maternelle.pe/products/recolector-de-leche-materna-maternelle" target="_blank" class="btn-option">Maternelle</a>
+                    <a href="https://www.plazavea.com.pe/extractor-de-leche-avent-manual-100442260/p" target="_blank" class="btn-option">Plaza Vea</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="gift-card">
+            <div class="gift-image">🧼</div>
+            <div class="gift-info">
+                <h3>Toallas para Bebé</h3>
+                <div class="options-container">
+                    <a href="https://www.falabella.com.pe/falabella-pe/product/20993753/toalla-pack-x6-algodon-carters/20993754" target="_blank" class="btn-option">Pack x6 Falabella</a>
+                    <a href="https://nua.pe/products/toallitas-muselina-set-x4-pzs-ecru-babyjem" target="_blank" class="btn-option">Muselinas en Nua</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="gift-card">
+            <div class="gift-image">🤸‍♂️</div>
+            <div class="gift-info">
+                <h3>Gimnasio Didáctico</h3>
+                <div class="options-container">
+                    <a href="https://www.mercadolibre.com.pe/gimnasio-multifuncional-didactico-musical-para-bebe-din-gris/up/MPEU3414492755" target="_blank" class="btn-option">Mercado Libre</a>
+                    <a href="https://simple.ripley.com.pe/benic-baby-gimnasio-interactivo-con-musica-2032359487025p" target="_blank" class="btn-option">Ripley</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="gift-card">
+            <div class="gift-image">🛁</div>
+            <div class="gift-info">
+                <h3>Bañera Plegable</h3>
+                <div class="options-container">
+                    <a href="https://www.carestino.com.pe/producto/baniera-plegable-con-soporte-maui-40l-gris/" target="_blank" class="btn-option">Carestino</a>
+                    <a href="https://www.promart.pe/tina-banera-plegable-piscis-con-termometro-blue-1000982981/p" target="_blank" class="btn-option">Promart</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="gift-card">
+            <div class="gift-image">🤤</div>
+            <div class="gift-info">
+                <h3>Pack de Baberos</h3>
+                <div class="options-container">
+                    <a href="https://www.promart.pe/pack-2-babero-de-silicona-para-bebe-babero-1001286868/p" target="_blank" class="btn-option">Silicona Promart</a>
+                    <a href="https://www.falabella.com.pe/falabella-pe/product/883619507/babero-bebe-nino-pack-x3-algodon-yamp/883619510" target="_blank" class="btn-option">Algodón Falabella</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="gift-card">
+            <div class="gift-image">🛒</div>
+            <div class="gift-info">
+                <h3>Carrito Organizador</h3>
+                <div class="options-container">
+                    <a href="https://www.promart.pe/carrito-organizador-con-ruedas-para-cocina-sala-dormitorio--4-niveles-1000979395/p" target="_blank" class="btn-option">Promart</a>
+                    <a href="https://www.sodimac.com.pe/sodimac-pe/articulo/113321927/carrito-organizador-multiuso-3-niveles-blanco/113321938" target="_blank" class="btn-option">Sodimac</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="gift-card">
+            <div class="gift-image">🧖‍♂️</div>
+            <div class="gift-info">
+                <h3>Bata de Baño / Capucha</h3>
+                <div class="options-container">
+                    <a href="https://www.falabella.com.pe/falabella-pe/product/149147746/Toalla-bano-bebe-Pequeno-Reno/149147748" target="_blank" class="btn-option">Falabella</a>
+                    <a href="https://simple.ripley.com.pe/toalla-bano-bebe-perrito-celeste-pmp20000433314" target="_blank" class="btn-option">Ripley</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="gift-card">
+            <div class="gift-image">🛏️</div>
+            <div class="gift-info">
+                <h3>Juego de Sábanas</h3>
+                <div class="options-container">
+                    <a href="https://www.maternelle.pe/products/juego-de-sabanas-para-cuna-colecho-premium-con-blonda" target="_blank" class="btn-option">Maternelle</a>
+                    <a href="https://www.falabella.com.pe/falabella-pe/product/883619034/mantas-bebe-nino-nina-algodon-yamp/883619038" target="_blank" class="btn-option">Falabella</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="gift-card">
+            <div class="gift-image">🏃‍♂️</div>
+            <div class="gift-info">
+                <h3>Caminadora Didáctica</h3>
+                <div class="options-container">
+                    <a href="https://www.plazavea.com.pe/andador-pro-he0819-huanger/p" target="_blank" class="btn-option">Plaza Vea</a>
+                    <a href="https://articulo.mercadolibre.com.pe/MPE-634678337-caminador-bebe-5-en-1-mesa-didactica-bugi-mecedora-babycam-_JM" target="_blank" class="btn-option">Mercado Libre</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="gift-card">
+            <div class="gift-image">🦷</div>
+            <div class="gift-info">
+                <h3>Mordedores Sensoriales</h3>
+                <div class="options-container">
+                    <a href="https://simple.ripley.com.pe/set-sonajas-con-mordedor-4-piezas-para-bebes-pmp20001173477" target="_blank" class="btn-option">Set Sonajas Ripley</a>
+                    <a href="https://www.maternelle.pe/products/mordedor-de-silicona-atomo-colores-azules-little-fish" target="_blank" class="btn-option">Silicona Maternelle</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="gift-card">
+            <div class="gift-image">😴</div>
+            <div class="gift-info">
+                <h3>Pijamas / Onesies</h3>
+                <div class="options-container">
+                    <a href="https://www.falabella.com.pe/falabella-pe/product/883596233/pijama-bebe-nino-pack-x2-polar-yamp/883596238" target="_blank" class="btn-option">Pack x2 Falabella</a>
+                    <a href="https://articulo.mercadolibre.com.pe/MPE-687275932-pijama-onesie-disfraz-bebe-michley-antialergico-stitch-_JM" target="_blank" class="btn-option">Disfraz Stich ML</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="gift-card">
+            <div class="gift-image">🧶</div>
+            <div class="gift-info">
+                <h3>Colchas y Mantas</h3>
+                <div class="options-container">
+                    <a href="https://simple.ripley.com.pe/manta-baby-magica-luminosa-azul-pmp20001057861" target="_blank" class="btn-option">Manta Luminosa</a>
+                    <a href="https://www.falabella.com.pe/falabella-pe/product/139867884/Colcha-Bebe-Felpa-Ositos-Gris/139867885" target="_blank" class="btn-option">Felpa Falabella</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="gift-card">
+            <div class="gift-image">🎒</div>
+            <div class="gift-info">
+                <h3>Pañalera Mochila</h3>
+                <div class="options-container">
+                    <a href="https://articulo.mercadolibre.com.pe/MPE-624829145-mochila-panalera-maternal-cuna-expandible-impermeable-3-en-1-_JM" target="_blank" class="btn-option">Mochila Cuna ML</a>
+                    <a href="https://juntoz.com/producto/panalera-mochila-bebe-cambiador-cuna-convertible-3-en-1-21534190" target="_blank" class="btn-option">Cambiador Juntoz</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="gift-card">
+            <div class="gift-image">🧣</div>
+            <div class="gift-info">
+                <h3>Fular Ergonómico</h3>
+                <div class="options-container">
+                    <a href="https://simple.ripley.com.pe/fular-pre-armado-la-sonaja-bebe-beige-pmp20001121347" target="_blank" class="btn-option">Pre-armado Ripley</a>
+                    <a href="https://www.oechsle.pe/fular-new-born-nemito-100-algodon-beige-tostado-1001320292/p" target="_blank" class="btn-option">Algodón Oechsle</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="gift-card">
+            <div class="gift-image">🥣</div>
+            <div class="gift-info">
+                <h3>Kit de Alimentación</h3>
+                <div class="options-container">
+                    <a href="https://www.promart.pe/kit-de-alimentacion-con-cuchara-silicona-5-piezas-lila-1001349432/p" target="_blank" class="btn-option">Set Silicona Promart</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="gift-card">
+            <div class="gift-image">⚽</div>
+            <div class="gift-info">
+                <h3>Pelota Montessori</h3>
+                <div class="options-container">
+                    <a href="https://www.oechsle.pe/set-6-pelotas-sensoriales-didacticas-para-bebe-con-texturas-1001241870/p" target="_blank" class="btn-option">Set Sensorial Oechsle</a>
+                    <a href="https://www.babyyuval.pe/psicomotrocidad-sensorial/3458-pelota-montessori-la-tiendita-de-ale-rojo-y-blanco" target="_blank" class="btn-option">Baby Yuval</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="gift-card">
+            <div class="gift-image">🧩</div>
+            <div class="gift-info">
+                <h3>Piso de Actividades</h3>
+                <div class="options-container">
+                    <a href="https://www.oechsle.pe/piso-alfombra-plegable-reversible-ninos-bebes-1-8-mt-x-2-mt-1000678338/p" target="_blank" class="btn-option">Piso Reversible</a>
+                    <a href="https://www.mercadolibre.com.pe/pisos-alfombra-de-goma-eva-antigolpes-para-ninos-y-bebes-x20/up/MPEU2900745706" target="_blank" class="btn-option">Goma EVA ML</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="gift-card">
+            <div class="gift-image">⚙️</div>
+            <div class="gift-info">
+                <h3>Panel Montessori</h3>
+                <div class="options-container">
+                    <a href="https://juegosdidacticosperu.pe/producto/tablero-ocupado-montessori-11-en-1/" target="_blank" class="btn-option">Tablero Ocupado</a>
+                    <a href="https://www.mercadolibre.com.pe/tablero-de-actividades-juego-didatico/p/MPE2037763603" target="_blank" class="btn-option">Mercado Libre</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="gift-card">
+            <div class="gift-image">📖</div>
+            <div class="gift-info">
+                <h3>Libro de Texturas</h3>
+                <div class="options-container">
+                    <a href="https://simple.ripley.com.pe/libro-textura-love-baby-juego-didatico-pmp20001081239" target="_blank" class="btn-option">Libro Love Baby</a>
+                    <a href="https://www.buscalibre.pe/libro-safari-de-textura-safari/9789878202495/p/55200308" target="_blank" class="btn-option">BuscaLibre</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="gift-card">
+            <div class="gift-image">💧</div>
+            <div class="gift-info">
+                <h3>Alfombra Acuática</h3>
+                <div class="options-container">
+                    <a href="https://simple.ripley.com.pe/alfombra-agua-inflable-bebes-pmp20000645906" target="_blank" class="btn-option">Inflable Ripley</a>
+                    <a href="https://www.maternelle.pe/products/alfombra-de-agua-variados" target="_blank" class="btn-option">Maternelle</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="gift-card">
+            <div class="gift-image">🛁📖</div>
+            <div class="gift-info">
+                <h3>Libros de Baño</h3>
+                <div class="options-container">
+                    <a href="https://www.iberolibrerias.com/hora-del-bano-mar-9789878200286-123061/p" target="_blank" class="btn-option">Ibero Librerías</a>
+                    <a href="https://nua.pe/products/libro-para-bano-saro" target="_blank" class="btn-option">Nua</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="gift-card">
+            <div class="gift-image">💅</div>
+            <div class="gift-info">
+                <h3>Limador de Uñas Eléctrico</h3>
+                <div class="options-container">
+                    <a href="https://www.promart.pe/kit-cortaunas-para-bebe-manicure-pulidor-unas-1000311204/p" target="_blank" class="btn-option">Promart</a>
+                    <a href="https://www.plazavea.com.pe/kit-cortaunas-para-bebe-manicure-pulidor-unas-100538912/p" target="_blank" class="btn-option">Plaza Vea</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="gift-card">
+            <div class="gift-image">🔴</div>
+            <div class="gift-info">
+                <h3>Piscina de Pelotas</h3>
+                <div class="options-container">
+                    <a href="https://www.falabella.com.pe/falabella-pe/product/18562805/piscina-para-ninos-2-anillos-91x20cm-rosado/18562805" target="_blank" class="btn-option">Falabella</a>
+                    <a href="https://www.metro.pe/piscina-de-bolas-hinchable-multiusos-bestway-kick-n-swish-3-en-1-con-18-bolas-de-juego-1041459/p" target="_blank" class="btn-option">Metro</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="gift-card">
+            <div class="gift-image">🪑</div>
+            <div class="gift-info">
+                <h3>Muebles de Lactancia</h3>
+                <p>Art Decor Muebles</p>
+                <a href="tel:944289073" class="btn-option">📞 944 289 073</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    <p>¡Los esperamos en el pantano con mucho cariño! • 2026</p>
+</footer>
+
+<script>
+    window.onload = () => document.getElementById('welcomeModal').style.display = 'flex';
+    const closeModal = () => document.getElementById('welcomeModal').style.display = 'none';
+</script>
+
+</body>
+</html>
