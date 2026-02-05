@@ -1,652 +1,1641 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sugerencias Baby Shower - Luan</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        :root {
-            --shrek-green: #C4D300;
-            --soft-green: #E8F5E9;
-            --brown-vest: #5C4033;
-            --swamp-dark: #4A5D23;
-            --cream: #FFF9E3;
-        }
+      :root {
+        --shrek-green: #c4d300;
+        --soft-green: #e8f5e9;
+        --brown-vest: #5c4033;
+        --swamp-dark: #4a5d23;
+        --cream: #fff9e3;
+      }
 
-        body {
-            font-family: 'Quicksand', sans-serif;
-            background-color: var(--soft-green);
-            background-image: radial-gradient(circle, #dcedc8 1px, transparent 1px);
-            background-size: 20px 20px;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
+      body {
+        font-family: "Quicksand", sans-serif;
+        background-color: var(--soft-green);
+        background-image: radial-gradient(circle, #dcedc8 1px, transparent 1px);
+        background-size: 20px 20px;
+        color: #333;
+        margin: 0;
+        padding: 0;
+      }
 
-        /* --- Modal --- */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(74, 93, 35, 0.8);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            backdrop-filter: blur(8px);
-        }
+      /* --- Modal --- */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(74, 93, 35, 0.8);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+        backdrop-filter: blur(8px);
+      }
 
-        .modal-content {
-            background: var(--cream);
-            padding: 30px;
-            border-radius: 40px;
-            max-width: 450px;
-            width: 85%;
-            text-align: center;
-            border: 8px solid var(--shrek-green);
-            box-shadow: 0 15px 0 var(--brown-vest);
-            animation: bounceIn 0.6s ease;
-        }
+      .modal-content {
+        background: var(--cream);
+        padding: 30px;
+        border-radius: 40px;
+        max-width: 450px;
+        width: 85%;
+        text-align: center;
+        border: 8px solid var(--shrek-green);
+        box-shadow: 0 15px 0 var(--brown-vest);
+        animation: bounceIn 0.6s ease;
+      }
 
-        .modal-content img {
-            width: 180px;
-            margin-bottom: 15px;
-            border-radius: 20px;
-        }
+      .modal-content img {
+        width: 180px;
+        margin-bottom: 15px;
+        border-radius: 20px;
+      }
 
-        /* --- Header --- */
-        header {
-            background-color: var(--shrek-green);
-            padding: 40px 20px;
-            text-align: center;
-            border-bottom: 10px solid var(--brown-vest);
-        }
+      /* --- Header --- */
+      header {
+        background-color: var(--shrek-green);
+        padding: 40px 20px;
+        text-align: center;
+        border-bottom: 10px solid var(--brown-vest);
+      }
 
-        .img-bienvenidos {
-            max-width: 600px;
-            width: 100%;
-            height: auto;
-            filter: drop-shadow(0 5px 5px rgba(0,0,0,0.2));
-            margin-bottom: 10px;
-        }
+      .img-bienvenidos {
+        max-width: 600px;
+        width: 100%;
+        height: auto;
+        filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.2));
+        margin-bottom: 10px;
+      }
 
-        /* --- Cuadro de Sugerencia --- */
-        .sugerencia-container {
-            max-width: 800px;
-            margin: 30px auto;
-            padding: 25px;
-            background-color: var(--cream);
-            border: 3px dashed var(--swamp-dark);
-            border-radius: 20px;
-            text-align: center;
-        }
+      /* --- Cuadro de Sugerencia --- */
+      .sugerencia-container {
+        max-width: 800px;
+        margin: 30px auto;
+        padding: 25px;
+        background-color: var(--cream);
+        border: 3px dashed var(--swamp-dark);
+        border-radius: 20px;
+        text-align: center;
+      }
 
-        .sugerencia-text {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: var(--brown-vest);
-            font-weight: 600;
-            margin: 0;
-        }
+      .sugerencia-text {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: var(--brown-vest);
+        font-weight: 600;
+        margin: 0;
+      }
 
-        /* --- Grid de Regalos --- */
-        .container {
-            max-width: 1100px;
-            margin: 20px auto 50px auto;
-            padding: 0 20px;
-        }
+      /* --- Grid de Regalos --- */
+      .container {
+        max-width: 1100px;
+        margin: 20px auto 50px auto;
+        padding: 0 20px;
+      }
 
-        .gift-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
-        }
+      .gift-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 25px;
+      }
 
-        .gift-card {
-            background: white;
-            border-radius: 30px;
-            border: 3px solid #d1e0a3;
-            overflow: hidden;
-            text-align: center;
-            transition: 0.3s;
-            display: flex;
-            flex-direction: column;
-            padding-bottom: 15px;
-        }
+      .gift-card {
+        position: relative; /* necesario para el overlay */
+      }
 
-        .gift-card:hover { transform: translateY(-5px); }
+      .gift-card {
+        background: white;
+        border-radius: 30px;
+        border: 3px solid #d1e0a3;
+        overflow: hidden;
+        text-align: center;
+        transition: 0.3s;
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 15px;
+      }
 
-        .gift-image {
-            height: 120px;
-            background: #f1f8e9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 50px;
-            border-bottom: 3px dashed var(--shrek-green);
-        }
+      .gift-card:hover {
+        transform: translateY(-5px);
+      }
 
-        .gift-info { padding: 15px; flex-grow: 1; display: flex; flex-direction: column; }
-        
-        .gift-info h3 {
-            font-family: 'Fredoka One', cursive;
-            color: var(--swamp-dark);
-            margin: 0 0 10px 0;
-            font-size: 1.2rem;
-        }
+      .gift-card.reserved::after {
+        content: "RESERVADO";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-35deg);
+        font-size: 2.2rem;
+        font-weight: 900;
+        color: rgba(92, 64, 51, 0.25); /* marrón suave */
+        letter-spacing: 4px;
+        pointer-events: none; /* no bloquea clicks */
+        white-space: nowrap;
+        z-index: 5;
+      }
 
-        .options-container {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-top: 10px;
-        }
+      .gift-image {
+        height: 120px;
+        background: #f1f8e9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 50px;
+        border-bottom: 3px dashed var(--shrek-green);
+      }
 
-        .btn-option {
-            background-color: var(--soft-green);
-            color: var(--brown-vest);
-            text-decoration: none;
-            padding: 8px;
-            border-radius: 15px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            border: 2px solid var(--shrek-green);
-            transition: 0.3s;
-        }
+      .gift-info {
+        padding: 15px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
 
-        .btn-option:hover { background-color: var(--shrek-green); }
+      .gift-info h3 {
+        font-family: "Fredoka One", cursive;
+        color: var(--swamp-dark);
+        margin: 0 0 10px 0;
+        font-size: 1.2rem;
+      }
 
-        .btn-manual {
-            background-color: var(--brown-vest);
-            color: white;
-            padding: 10px;
-            border-radius: 15px;
-            font-size: 0.9rem;
-            text-decoration: none;
-            margin-top: 10px;
-            display: block;
-        }
+      .options-container {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 10px;
+      }
 
-        footer {
-            text-align: center;
-            padding: 40px;
-            background: var(--brown-vest);
-            color: var(--shrek-green);
-        }
+      .btn-option {
+        background-color: var(--soft-green);
+        color: var(--brown-vest);
+        text-decoration: none;
+        padding: 8px;
+        border-radius: 15px;
+        font-size: 0.85rem;
+        font-weight: bold;
+        border: 2px solid var(--shrek-green);
+        transition: 0.3s;
+      }
 
+      .btn-option:hover {
+        background-color: var(--shrek-green);
+      }
+
+      .btn-manual {
+        background-color: var(--brown-vest);
+        color: white;
+        padding: 10px;
+        border-radius: 15px;
+        font-size: 0.9rem;
+        text-decoration: none;
+        margin-top: 10px;
+        display: block;
+      }
+
+      footer {
+        text-align: center;
+        padding: 40px;
+        background: var(--brown-vest);
+        color: var(--shrek-green);
+      }
+
+      .main-banner {
+        background: url("banner.webp") center center;
+        background-size: cover; /* no recorta */
+        background-color: var(--shrek-green); /* relleno si sobra espacio */
+        height: 350px; /* más delgado (ajusta a gusto) */
+        width: 100%;
+        border-bottom: 8px solid var(--brown-vest);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      .gift-image {
+        height: 120px;
+        background: #f1f8e9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-bottom: 3px dashed var(--shrek-green);
+        overflow: hidden;
+      }
+
+      .gift-image img {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain; /* no recorta */
+      }
+
+      /* Ajuste para que en celulares no se vea tan alto y se aprecie mejor el letrero */
+      @media (max-width: 600px) {
         .main-banner {
-            /* Cargamos la imagen generada */
-            background: url('banner.png') no-repeat center center;
-            
-            /* 'cover' asegura que llene todo el ancho, 'contain' si quieres ver la imagen completa sin recortes */
-            background-size: cover; 
-            
-            /* Altura para computadoras */
-            height: 330px; 
-            
-            width: 100%;
-            border-bottom: 8px solid var(--brown-vest);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+          height: 90px; /* más delgado en celular */
+          background-size: contain; /* igual, sin recorte */
         }
+      }
 
-        /* Ajuste para que en celulares no se vea tan alto y se aprecie mejor el letrero */
-        @media (max-width: 600px) {
-            .main-banner {
-                height: 100px;
-                background-size: cover;
-            }
+      @keyframes bounceIn {
+        0% {
+          transform: scale(0.5);
+          opacity: 0;
         }
-
-        @keyframes bounceIn {
-            0% { transform: scale(0.5); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
+        100% {
+          transform: scale(1);
+          opacity: 1;
         }
+      }
     </style>
-</head>
-<body>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+      const SUPABASE_URL = "https://ideihchzrusccpmlhuni.supabase.co";
+      const SUPABASE_ANON_KEY =
+        "sb_publishable_LeZHRjAgxjzxM1uV9KYNbQ_0cmiuUDw";
 
-<div class="modal-overlay" id="welcomeModal">
-    <div class="modal-content">
-        <img src="bebe_shrek.png" alt="Shrek Baby">
-        <p><b>Tíos y tías</b>, junto a mis papis les dejamos algunas sugerencias; pero queremos que sepan que todo lo que nos regalen con cariño será recibido como una bendición.</p>
-        <button class="btn-option" onclick="closeModal()" style="cursor:pointer; padding: 10px 20px;">¡Entrar al Pantano!</button>
-    </div>
-</div>
+      supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-<header class="main-banner"></header>
+      async function reserveGift(id, btn) {
+        const ok = confirm(
+          "¿Estás seguro de que quieres reservar esta sugerencia?",
+        );
 
+        if (!ok) return;
 
+        btn.disabled = true;
 
-<div class="container">
+        const { data, error } = await supabase
+          .from("Lista")
+          .update({ reserved: true, reserved_at: new Date().toISOString() })
+          .eq("id", id)
+          .eq("reserved", false)
+          .select("id");
 
-    <div style="text-align: center; margin-bottom: 20px;">
-        <h1 style="font-family: 'Fredoka One'; color: var(--shrek-green); text-shadow: 2px 2px var(--brown-vest);">LISTA DE SUGERENCIAS</h1>
-    </div>
+        if (error || !data || data.length === 0) {
+          alert("No se pudo reservar (ya está reservado o no permitido).");
+          btn.disabled = false;
+          return;
+        }
 
+        const card = btn.closest(".gift-card");
+        if (card) {
+          card.classList.add("reserved");
+          card.style.opacity = "0.55";
+          card.style.filter = "grayscale(1)";
+        }
 
-    <div class="sugerencia-container">
-         <p class="sugerencia-text">
-            Las sugerencias que les dejamos pueden encontrarlas en su tienda favorita, desde la más elegante hasta la más caserita… ¡todo vale! 
-            <br><br>
-            Las referencias son solo una guía, así que pueden ir al mercado, la cachina, el hueco o donde el corazón (y el bolsillo) los lleve 😄
-            <br><br>
-            Sabemos que algunos regalitos pueden ser un poquito más costosos, por eso también les dejamos la idea de que, si desean, pueden juntarse entre varios para regalarnos algo con mucho cariño.
+        btn.textContent = "Reservado";
+      }
+
+      async function loadReserved() {
+        const { data, error } = await supabase
+          .from("Lista")
+          .select("id,reserved");
+
+        console.log("data", data);
+
+        if (error) return;
+
+        data.forEach((g) => {
+          if (!g.reserved) return;
+          const btn = document.querySelector(`[data-gift-id="${g.id}"]`);
+          if (!btn) return;
+          const card = btn.closest(".gift-card");
+          if (card) {
+            card.classList.add("reserved");
+
+            card.style.opacity = "0.55";
+            card.style.filter = "grayscale(1)";
+          }
+          btn.textContent = "Reservado";
+          btn.disabled = true;
+        });
+      }
+
+      window.addEventListener("load", loadReserved);
+    </script>
+  </head>
+  <body>
+    <div class="modal-overlay" id="welcomeModal">
+      <div class="modal-content">
+        <img src="bebe_shrek.png" alt="Shrek Baby" />
+        <p>
+          <b>Tíos y tías</b>, junto a mis papis les dejamos algunas sugerencias;
+          pero queremos que sepan que todo lo que nos regalen con cariño será
+          recibido como una bendición.
         </p>
+        <button
+          class="btn-option"
+          onclick="closeModal()"
+          style="cursor: pointer; padding: 10px 20px"
+        >
+          ¡Entrar al Pantano!
+        </button>
+      </div>
     </div>
 
- <div class="gift-grid">
-<a class="btn-manual"
-   target="_blank"
-   href="https://docs.google.com/forms/d/e/1FAIpQLSe6f5mQdNNUAsN_GjoWmi021vLE2WTo5HouLBZ2juRgVm1sAA/viewform?usp=pp_url&entry.952640550=mecedora_electronica">
-  Marcar como reservado
-</a>
+    <header class="main-banner"></header>
 
-<div class="gift-card" data-id="mecedora_electronica">
-  ...
-  <button class="btn-manual"
-          onclick="reserveGift('mecedora_electronica', this)">
-    Marcar como reservado
-  </button>
-</div>
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 20px">
+        <h1
+          style="
+            font-family: &quot;Fredoka One&quot;;
+            color: var(--shrek-green);
+            text-shadow: 2px 2px var(--brown-vest);
+          "
+        >
+          LISTA DE SUGERENCIAS
+        </h1>
+      </div>
 
+      <div class="sugerencia-container">
+        <p class="sugerencia-text">
+          Las sugerencias que les dejamos pueden encontrarlas en su tienda
+          favorita, desde la más elegante hasta la más caserita… ¡todo vale!
+          <br /><br />
+          Las referencias son solo una guía, así que pueden ir al mercado, la
+          cachina, el hueco o donde el corazón (y el bolsillo) los lleve 😄
+          <br /><br />
+          Sabemos que algunos regalitos pueden ser un poquito más costosos, por
+          eso también les dejamos la idea de que, si desean, pueden juntarse
+          entre varios para regalarnos algo con mucho cariño.
+        </p>
+      </div>
 
-    <div class="gift-card" style="border: 4px solid var(--swamp-dark); background-color: var(--cream);">
-            <div class="gift-image" style="background: var(--shrek-green);">📦✨</div>
-            <div class="gift-info">
-                <h3 style="margin-bottom: 5px;">Catálogos y Contactos</h3>
-                <p style="font-size: 0.85rem; margin-bottom: 15px;">Consulta aquí opciones variadas y económicas:</p>
-                
-                <div class="options-container">
-                    <a href="https://www.tiktok.com/@dzimportaciones/video/7561204716227611911" target="_blank" class="btn-option" style="background-color: #000; color: #fff; display: flex; align-items: center; justify-content: center; gap: 8px;">
-                        🎬 Tiktok DZ Importaciones
-                    </a>
-                    <a href="https://wa.me/51925963490?text=Hola%20te%20sugerimos%20revisar%20el%20catálogo" target="_blank" class="btn-option" style="background-color: #25D366; color: #fff; border: none; display: flex; align-items: center; justify-content: center; gap: 8px;">
-                        💬 WhatsApp BabySteps
-                    </a>
-                </div>
+      <div class="gift-grid">
+        <div
+          class="gift-card"
+          style="
+            border: 4px solid var(--swamp-dark);
+            background-color: var(--cream);
+          "
+        >
+          <div class="gift-image" style="background: var(--shrek-green)">
+            📦✨
+          </div>
+          <div class="gift-info">
+            <h3 style="margin-bottom: 5px">Catálogos y Contactos</h3>
+            <p style="font-size: 0.85rem; margin-bottom: 15px">
+              Consulta aquí opciones variadas y económicas:
+            </p>
+
+            <div class="options-container">
+              <a
+                href="https://www.tiktok.com/@dzimportaciones/video/7561204716227611911"
+                target="_blank"
+                class="btn-option"
+                style="
+                  background-color: #000;
+                  color: #fff;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  gap: 8px;
+                "
+              >
+                🎬 Tiktok DZ Importaciones
+              </a>
+              <a
+                href="https://wa.me/51925963490?text=Hola%20te%20sugerimos%20revisar%20el%20catálogo"
+                target="_blank"
+                class="btn-option"
+                style="
+                  background-color: #25d366;
+                  color: #fff;
+                  border: none;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  gap: 8px;
+                "
+              >
+                💬 WhatsApp BabySteps
+              </a>
             </div>
+          </div>
         </div>
 
         <div class="gift-card">
-            <div class="gift-image">👶⚡</div>
-            <div class="gift-info">
-                <h3>Mecedora Electrónica</h3>
-                <div class="options-container">
-                    <a href="https://www.promart.pe/mecedora-para-bebe-automatica-bluetooth-con-mosquitero-1000705497/p" target="_blank" class="btn-option">Promart</a>
-                    <a href="https://www.falabella.com.pe/falabella-pe/product/882946603/cuna-moises-musical-bebe-6-en-1-mecedora-priori/882946604" target="_blank" class="btn-option">Falabella</a>
-                    <a href="https://www.mercadolibre.com.pe/silla-mecedora-para-bebe-infanti-nido-plegable-grisrosado/p/MPE19535494" target="_blank" class="btn-option">Mercado Libre</a>
-                </div>
+          <div class="gift-image">
+            <img src="imgs/Mecedora.webp" alt="Mecedora" />
+          </div>
+          <div class="gift-info">
+            <h3>Mecedora Electrónica</h3>
+            <div class="options-container">
+              <a
+                href="https://www.promart.pe/mecedora-para-bebe-automatica-bluetooth-con-mosquitero-1000705497/p"
+                target="_blank"
+                class="btn-option"
+                >Promart</a
+              >
+              <a
+                href="https://www.falabella.com.pe/falabella-pe/product/882946603/cuna-moises-musical-bebe-6-en-1-mecedora-priori/882946604"
+                target="_blank"
+                class="btn-option"
+                >Falabella</a
+              >
+              <a
+                href="https://www.tiktok.com/@dzimportaciones/video/7561204716227611911"
+                target="_blank"
+                class="btn-option"
+                >Dz Importaciones</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="mecedora_electronica"
+                onclick="reserveGift('mecedora_electronica', this)"
+              >
+                Reservar
+              </button>
             </div>
+          </div>
         </div>
 
         <div class="gift-card">
-            <div class="gift-image">☁️</div>
-            <div class="gift-info">
-                <h3>Almohada de Lactancia</h3>
-                <div class="options-container">
-                    <a href="https://juntoz.com/producto/almohada-de-lactancia-y-estimulacion-5-en-1-azul-apego-23934517matal05aap0503202408395708806" target="_blank" class="btn-option">Juntoz</a>
-                    <a href="https://www.falabella.com.pe/falabella-pe/product/prod17850612/Almohada-de-Lactancia-y-Estimulacion-Apego/20403677" target="_blank" class="btn-option">Falabella</a>
-                    <a href="https://www.mercadolibre.com.pe/cojin-de-lactancia-bebe-anti-reflujo-ideal-para-cesaria/up/MPEU2457477579" target="_blank" class="btn-option">Mercado Libre</a>
-                </div>
+          <div class="gift-image">
+            <img src="imgs/Almohada.webp" alt="Almohada de Lactancia" />
+          </div>
+          <div class="gift-info">
+            <h3>Almohada de Lactancia</h3>
+            <div class="options-container">
+              <a
+                href="https://juntoz.com/producto/almohada-de-lactancia-y-estimulacion-5-en-1-azul-apego-23934517matal05aap0503202408395708806"
+                target="_blank"
+                class="btn-option"
+                >Juntoz</a
+              >
+              <a
+                href="https://www.falabella.com.pe/falabella-pe/product/prod17850612/Almohada-de-Lactancia-y-Estimulacion-Apego/20403677"
+                target="_blank"
+                class="btn-option"
+                >Falabella</a
+              >
+              <a
+                href="https://www.mercadolibre.com.pe/cojin-de-lactancia-bebe-anti-reflujo-ideal-para-cesaria/up/MPEU2457477579"
+                target="_blank"
+                class="btn-option"
+                >Mercado Libre</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="almohada_lactancia"
+                onclick="reserveGift('almohada_lactancia', this)"
+              >
+                Reservar
+              </button>
             </div>
+          </div>
         </div>
 
         <div class="gift-card">
-            <div class="gift-image">🎨</div>
-            <div class="gift-info">
-                <h3>Juegos Didácticos</h3>
-                <div class="options-container">
-                    <a href="https://www.tailoy.com.pe/escolar/materiales-didacticos/juegos-didacticos.html" target="_blank" class="btn-option">Ver en Tai Loy</a>
-                    <a href="https://www.tiktok.com/@dzimportaciones/video/7561204716227611911" target="_blank" class="btn-option">Video Referencia</a>
-                </div>
+          <div class="gift-image">
+            <img src="imgs/Didácticos.jpg" alt="Juegos Didácticos" />
+          </div>
+          <div class="gift-info">
+            <h3>Juegos Didácticos</h3>
+            <div class="options-container">
+              <a
+                href="https://www.tailoy.com.pe/escolar/materiales-didacticos/juegos-didacticos.html"
+                target="_blank"
+                class="btn-option"
+                >Ver en Tai Loy</a
+              >
+              <a
+                href="https://www.tiktok.com/@dzimportaciones/video/7561204716227611911"
+                target="_blank"
+                class="btn-option"
+                >Dz Importaciones</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="juegos_didacticos"
+                onclick="reserveGift('juegos_didacticos', this)"
+              >
+                Reservar
+              </button>
             </div>
+          </div>
         </div>
 
         <div class="gift-card">
-            <div class="gift-image">👕</div>
-            <div class="gift-info">
-                <h3>Ropa de Bebé</h3>
-                <div class="options-container">
-                    <a href="https://www.puntobebe.com.pe/sub-category/algodon-pima-3" target="_blank" class="btn-option">Punto Bebé (Pima)</a>
-                    <a href="https://www.plazavea.com.pe/moda-infantil/ropa-bebe-nino" target="_blank" class="btn-option">Plaza Vea</a>
-                    <a href="https://pe.hm.com/bebes/recien-nacido" target="_blank" class="btn-option">H&M Recién Nacido</a>
-                </div>
+          <div class="gift-image">
+            <img src="imgs/ropa.jpeg" alt="Ropa de Bebé" />
+          </div>
+          <div class="gift-info">
+            <h3>Ropa de Bebé</h3>
+            <h6>
+              Tíos y tías, si están pensando en regalarme ropita para que me vea
+              muy guapo, les cuento que puede ser desde los 6 meses en adelante,
+              porque creceré rapidísimo y seré tan grandote como mi papá.
+            </h6>
+            <div class="options-container">
+              <a
+                href="https://www.puntobebe.com.pe/sub-category/algodon-pima-3"
+                target="_blank"
+                class="btn-option"
+                >Punto Bebé (Pima)</a
+              >
+              <a
+                href="https://www.plazavea.com.pe/moda-infantil/ropa-bebe-nino"
+                target="_blank"
+                class="btn-option"
+                >Plaza Vea</a
+              >
+              <a
+                href="https://pe.hm.com/bebes/recien-nacido"
+                target="_blank"
+                class="btn-option"
+                >H&M Recién Nacido</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="ropa_bebe"
+                onclick="reserveGift('ropa_bebe', this)"
+              >
+                Reservar
+              </button>
             </div>
+          </div>
         </div>
 
         <div class="gift-card">
-            <div class="gift-image">🍼⚡</div>
-            <div class="gift-info">
-                <h3>Extractor Eléctrico</h3>
-                <div class="options-container">
-                    <a href="https://www.mercadolibre.com.pe/extractor-leche-sacaleche-electrico-doble-potente/up/MPEU2462468358" target="_blank" class="btn-option">Mercado Libre</a>
-                    <a href="https://www.coolbox.pe/extractor-de-leche-inalambrico-portatil-pantalla-led-rosado-100434538/p" target="_blank" class="btn-option">Coolbox</a>
-                    <a href="https://www.falabella.com.pe/falabella-pe/product/146349062/extractor-de-leche-materno-s22-con-3-modos-y-15-niveles/146349063" target="_blank" class="btn-option">Falabella</a>
-                </div>
+          <div class="gift-image">
+            <img src="imgs/Extractor-e.webp" alt="Extractor Eléctrico" />
+          </div>
+          <div class="gift-info">
+            <h3>Extractor Eléctrico</h3>
+            <div class="options-container">
+              <a
+                href="https://www.mercadolibre.com.pe/extractor-leche-sacaleche-electrico-doble-potente/up/MPEU2462468358"
+                target="_blank"
+                class="btn-option"
+                >Mercado Libre</a
+              >
+              <a
+                href="https://www.coolbox.pe/extractor-de-leche-inalambrico-portatil-pantalla-led-rosado-100434538/p"
+                target="_blank"
+                class="btn-option"
+                >Coolbox</a
+              >
+              <a
+                href="https://www.falabella.com.pe/falabella-pe/product/146349062/extractor-de-leche-materno-s22-con-3-modos-y-15-niveles/146349063"
+                target="_blank"
+                class="btn-option"
+                >Falabella</a
+              >
+              <a
+                href="https://www.tiktok.com/@dzimportaciones/video/7561204716227611911"
+                target="_blank"
+                class="btn-option"
+                >Dz Importaciones</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="extractor_electrico"
+                onclick="reserveGift('extractor_electrico', this)"
+              >
+                Reservar
+              </button>
             </div>
+          </div>
         </div>
 
         <div class="gift-card">
-            <div class="gift-image">🍼✋</div>
-            <div class="gift-info">
-                <h3>Extractor Manual</h3>
-                <div class="options-container">
-                    <a href="https://www.carestino.com.pe/producto/extractor-de-leche-manual-con-biberon-gris/" target="_blank" class="btn-option">Carestino</a>
-                    <a href="https://www.maternelle.pe/products/recolector-de-leche-materna-maternelle" target="_blank" class="btn-option">Maternelle</a>
-                    <a href="https://www.plazavea.com.pe/extractor-de-leche-avent-manual-100442260/p" target="_blank" class="btn-option">Plaza Vea</a>
-                </div>
+          <div class="gift-image">
+            <img src="imgs/Extractor-m.webp" alt="Extractor Manual" />
+          </div>
+          <div class="gift-info">
+            <h3>Extractor Manual</h3>
+            <div class="options-container">
+              <a
+                href="https://www.carestino.com.pe/producto/extractor-de-leche-manual-con-biberon-gris/"
+                target="_blank"
+                class="btn-option"
+                >Carestino</a
+              >
+              <a
+                href="https://www.maternelle.pe/products/recolector-de-leche-materna-maternelle"
+                target="_blank"
+                class="btn-option"
+                >Maternelle</a
+              >
+              <a
+                href="https://www.plazavea.com.pe/extractor-de-leche-avent-manual-100442260/p"
+                target="_blank"
+                class="btn-option"
+                >Plaza Vea</a
+              >
+              <a
+                href="https://www.tiktok.com/@dzimportaciones/video/7561204716227611911"
+                target="_blank"
+                class="btn-option"
+                >Dz Importaciones</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="extractor_manual"
+                onclick="reserveGift('extractor_manual', this)"
+              >
+                Reservar
+              </button>
             </div>
+          </div>
         </div>
 
         <div class="gift-card">
-            <div class="gift-image">🧼</div>
-            <div class="gift-info">
-                <h3>Toallas para Bebé</h3>
-                <div class="options-container">
-                    <a href="https://www.falabella.com.pe/falabella-pe/product/20993753/toalla-pack-x6-algodon-carters/20993754" target="_blank" class="btn-option">Pack x6 Falabella</a>
-                    <a href="https://nua.pe/products/toallitas-muselina-set-x4-pzs-ecru-babyjem" target="_blank" class="btn-option">Muselinas en Nua</a>
-                </div>
+          <div class="gift-image">
+            <img src="imgs/Toallitas.webp" alt="Toallas para Bebé" />
+          </div>
+          <div class="gift-info">
+            <h3>Toallas para Bebé</h3>
+            <div class="options-container">
+              <a
+                href="https://www.falabella.com.pe/falabella-pe/product/20993753/toalla-pack-x6-algodon-carters/20993754"
+                target="_blank"
+                class="btn-option"
+                >Pack x6 Falabella</a
+              >
+              <a
+                href="https://nua.pe/products/toallitas-muselina-set-x4-pzs-ecru-babyjem"
+                target="_blank"
+                class="btn-option"
+                >Muselinas en Nua</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="toallas_bebe"
+                onclick="reserveGift('toallas_bebe', this)"
+              >
+                Reservar
+              </button>
             </div>
+          </div>
         </div>
 
         <div class="gift-card">
-            <div class="gift-image">🤸‍♂️</div>
-            <div class="gift-info">
-                <h3>Gimnasio Didáctico</h3>
-                <div class="options-container">
-                    <a href="https://www.mercadolibre.com.pe/gimnasio-multifuncional-didactico-musical-para-bebe-din-gris/up/MPEU3414492755" target="_blank" class="btn-option">Mercado Libre</a>
-                    <a href="https://simple.ripley.com.pe/benic-baby-gimnasio-interactivo-con-musica-2032359487025p" target="_blank" class="btn-option">Ripley</a>
-                </div>
+          <div class="gift-image">
+            <img src="imgs/Gimnasio.webp" alt="Gimnasio Didáctico" />
+          </div>
+          <div class="gift-info">
+            <h3>Gimnasio Didáctico</h3>
+            <div class="options-container">
+              <a
+                href="https://www.mercadolibre.com.pe/gimnasio-multifuncional-didactico-musical-para-bebe-din-gris/up/MPEU3414492755"
+                target="_blank"
+                class="btn-option"
+                >Mercado Libre</a
+              >
+              <a
+                href="https://simple.ripley.com.pe/benic-baby-gimnasio-interactivo-con-musica-2032359487025p"
+                target="_blank"
+                class="btn-option"
+                >Ripley</a
+              >
+              <a
+                href="https://www.tiktok.com/@dzimportaciones/video/7561204716227611911"
+                target="_blank"
+                class="btn-option"
+                >Dz Importaciones</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="gimnasio_didactico"
+                onclick="reserveGift('gimnasio_didactico', this)"
+              >
+                Reservar
+              </button>
             </div>
+          </div>
         </div>
 
         <div class="gift-card">
-            <div class="gift-image">🛁</div>
-            <div class="gift-info">
-                <h3>Bañera Plegable</h3>
-                <div class="options-container">
-                    <a href="https://www.carestino.com.pe/producto/baniera-plegable-con-soporte-maui-40l-gris/" target="_blank" class="btn-option">Carestino</a>
-                    <a href="https://www.promart.pe/tina-banera-plegable-piscis-con-termometro-blue-1000982981/p" target="_blank" class="btn-option">Promart</a>
-                </div>
+          <div class="gift-image">
+            <img src="imgs/Bañera.webp" alt="Bañera Plegable" />
+          </div>
+          <div class="gift-info">
+            <h3>Bañera Plegable</h3>
+            <div class="options-container">
+              <a
+                href="https://www.carestino.com.pe/producto/baniera-plegable-con-soporte-maui-40l-gris/"
+                target="_blank"
+                class="btn-option"
+                >Carestino</a
+              >
+              <a
+                href="https://www.promart.pe/tina-banera-plegable-piscis-con-termometro-blue-1000982981/p"
+                target="_blank"
+                class="btn-option"
+                >Promart</a
+              >
+              <a
+                href="https://www.tiktok.com/@dzimportaciones/video/7561204716227611911"
+                target="_blank"
+                class="btn-option"
+                >Dz Importaciones</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="banera_plegable"
+                onclick="reserveGift('banera_plegable', this)"
+              >
+                Reservar
+              </button>
             </div>
+          </div>
         </div>
 
         <div class="gift-card">
-            <div class="gift-image">🤤</div>
-            <div class="gift-info">
-                <h3>Pack de Baberos</h3>
-                <div class="options-container">
-                    <a href="https://www.promart.pe/pack-2-babero-de-silicona-para-bebe-babero-1001286868/p" target="_blank" class="btn-option">Silicona Promart</a>
-                    <a href="https://www.falabella.com.pe/falabella-pe/product/883619507/babero-bebe-nino-pack-x3-algodon-yamp/883619510" target="_blank" class="btn-option">Algodón Falabella</a>
-                </div>
+          <div class="gift-image">
+            <img src="imgs/babero.webp" alt="Baberos" />
+          </div>
+          <div class="gift-info">
+            <h3>Pack de Baberos</h3>
+            <div class="options-container">
+              <a
+                href="https://www.promart.pe/pack-2-babero-de-silicona-para-bebe-babero-1001286868/p"
+                target="_blank"
+                class="btn-option"
+                >Silicona Promart</a
+              >
+              <a
+                href="https://www.falabella.com.pe/falabella-pe/product/883619507/babero-bebe-nino-pack-x3-algodon-yamp/883619510"
+                target="_blank"
+                class="btn-option"
+                >Algodón Falabella</a
+              >
+              <a
+                href="https://www.tiktok.com/@dzimportaciones/video/7561204716227611911"
+                target="_blank"
+                class="btn-option"
+                >Dz Importaciones</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="pack_baberos"
+                onclick="reserveGift('pack_baberos', this)"
+              >
+                Reservar
+              </button>
             </div>
+          </div>
         </div>
 
         <div class="gift-card">
-            <div class="gift-image">🛒</div>
-            <div class="gift-info">
-                <h3>Carrito Organizador</h3>
-                <div class="options-container">
-                    <a href="https://www.promart.pe/carrito-organizador-con-ruedas-para-cocina-sala-dormitorio--4-niveles-1000979395/p" target="_blank" class="btn-option">Promart</a>
-                    <a href="https://www.sodimac.com.pe/sodimac-pe/articulo/113321927/carrito-organizador-multiuso-3-niveles-blanco/113321938" target="_blank" class="btn-option">Sodimac</a>
-                </div>
+          <div class="gift-image">
+            <img src="imgs/organizador.webp" alt="Carrito Organizador" />
+          </div>
+          <div class="gift-info">
+            <h3>Carrito Organizador</h3>
+            <div class="options-container">
+              <a
+                href="https://www.promart.pe/carrito-organizador-con-ruedas-para-cocina-sala-dormitorio--4-niveles-1000979395/p"
+                target="_blank"
+                class="btn-option"
+                >Promart</a
+              >
+              <a
+                href="https://www.sodimac.com.pe/sodimac-pe/articulo/113321927/carrito-organizador-multiuso-3-niveles-blanco/113321938"
+                target="_blank"
+                class="btn-option"
+                >Sodimac</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="carrito_organizador"
+                onclick="reserveGift('carrito_organizador', this)"
+              >
+                Reservar
+              </button>
             </div>
+          </div>
         </div>
 
         <div class="gift-card">
-            <div class="gift-image">🧖‍♂️</div>
-            <div class="gift-info">
-                <h3>Bata de Baño / Capucha</h3>
-                <div class="options-container">
-                    <a href="https://www.falabella.com.pe/falabella-pe/product/149147746/Toalla-bano-bebe-Pequeno-Reno/149147748" target="_blank" class="btn-option">Falabella</a>
-                    <a href="https://simple.ripley.com.pe/toalla-bano-bebe-perrito-celeste-pmp20000433314" target="_blank" class="btn-option">Ripley</a>
-                </div>
+          <div class="gift-image">
+            <img src="imgs/bata.webp" alt="Bata de Baño / Capucha" />
+          </div>
+          <div class="gift-info">
+            <h3>Bata de Baño / Capucha</h3>
+            <div class="options-container">
+              <a
+                href="https://www.falabella.com.pe/falabella-pe/product/149147746/Toalla-bano-bebe-Pequeno-Reno/149147748"
+                target="_blank"
+                class="btn-option"
+                >Falabella</a
+              >
+              <a
+                href="https://simple.ripley.com.pe/toalla-bano-bebe-perrito-celeste-pmp20000433314"
+                target="_blank"
+                class="btn-option"
+                >Ripley</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="bata_bano_capucha"
+                onclick="reserveGift('bata_bano_capucha', this)"
+              >
+                Reservar
+              </button>
             </div>
+          </div>
         </div>
 
         <div class="gift-card">
-            <div class="gift-image">🛏️</div>
-            <div class="gift-info">
-                <h3>Juego de Sábanas</h3>
-                <div class="options-container">
-                    <a href="https://www.maternelle.pe/products/juego-de-sabanas-para-cuna-colecho-premium-con-blonda" target="_blank" class="btn-option">Maternelle</a>
-                    <a href="https://www.falabella.com.pe/falabella-pe/product/883619034/mantas-bebe-nino-nina-algodon-yamp/883619038" target="_blank" class="btn-option">Falabella</a>
-                </div>
+          <div class="gift-image">
+            <img src="imgs/sabana.webp" alt="Juego de Sábanas" />
+          </div>
+          <div class="gift-info">
+            <h3>Juego de Sábanas</h3>
+            <div class="options-container">
+              <a
+                href="https://www.maternelle.pe/products/juego-de-sabanas-para-cuna-colecho-premium-con-blonda"
+                target="_blank"
+                class="btn-option"
+                >Maternelle</a
+              >
+              <a
+                href="https://www.falabella.com.pe/falabella-pe/product/883619034/mantas-bebe-nino-nina-algodon-yamp/883619038"
+                target="_blank"
+                class="btn-option"
+                >Falabella</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="juego_sabanas"
+                onclick="reserveGift('juego_sabanas', this)"
+              >
+                Reservar
+              </button>
             </div>
+          </div>
         </div>
 
         <div class="gift-card">
-            <div class="gift-image">🏃‍♂️</div>
-            <div class="gift-info">
-                <h3>Caminadora Didáctica</h3>
-                <div class="options-container">
-                    <a href="https://www.plazavea.com.pe/andador-pro-he0819-huanger/p" target="_blank" class="btn-option">Plaza Vea</a>
-                    <a href="https://articulo.mercadolibre.com.pe/MPE-634678337-caminador-bebe-5-en-1-mesa-didactica-bugi-mecedora-babycam-_JM" target="_blank" class="btn-option">Mercado Libre</a>
-                </div>
+          <div class="gift-image">
+            <img src="imgs/caminadora.webp" alt="Caminadora Didáctica" />
+          </div>
+          <div class="gift-info">
+            <h3>Caminadora Didáctica</h3>
+            <div class="options-container">
+              <a
+                href="https://www.plazavea.com.pe/andador-pro-he0819-huanger/p"
+                target="_blank"
+                class="btn-option"
+                >Plaza Vea</a
+              >
+              <a
+                href="https://articulo.mercadolibre.com.pe/MPE-634678337-caminador-bebe-5-en-1-mesa-didactica-bugi-mecedora-babycam-_JM"
+                target="_blank"
+                class="btn-option"
+                >Mercado Libre</a
+              >
+              <a
+                href="https://www.tiktok.com/@dzimportaciones/video/7561204716227611911"
+                target="_blank"
+                class="btn-option"
+                >Dz Importaciones</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="caminadora_didactica"
+                onclick="reserveGift('caminadora_didactica', this)"
+              >
+                Reservar
+              </button>
             </div>
+          </div>
         </div>
 
         <div class="gift-card">
-            <div class="gift-image">🦷</div>
-            <div class="gift-info">
-                <h3>Mordedores Sensoriales</h3>
-                <div class="options-container">
-                    <a href="https://simple.ripley.com.pe/set-sonajas-con-mordedor-4-piezas-para-bebes-pmp20001173477" target="_blank" class="btn-option">Set Sonajas Ripley</a>
-                    <a href="https://www.maternelle.pe/products/mordedor-de-silicona-atomo-colores-azules-little-fish" target="_blank" class="btn-option">Silicona Maternelle</a>
-                </div>
+          <div class="gift-image">
+            <img src="imgs/Mordedor.webp" alt="Mordedor Sensorial" />
+          </div>
+          <div class="gift-info">
+            <h3>Mordedores Sensoriales</h3>
+            <div class="options-container">
+              <a
+                href="https://simple.ripley.com.pe/set-sonajas-con-mordedor-4-piezas-para-bebes-pmp20001173477"
+                target="_blank"
+                class="btn-option"
+                >Set Sonajas Ripley</a
+              >
+              <a
+                href="https://www.maternelle.pe/products/mordedor-de-silicona-atomo-colores-azules-little-fish"
+                target="_blank"
+                class="btn-option"
+                >Silicona Maternelle</a
+              >
+              <a
+                href="https://www.tiktok.com/@dzimportaciones/video/7561204716227611911"
+                target="_blank"
+                class="btn-option"
+                >Dz Importaciones</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="mordedores_sensoriales"
+                onclick="reserveGift('mordedores_sensoriales', this)"
+              >
+                Reservar
+              </button>
             </div>
+          </div>
         </div>
 
         <div class="gift-card">
-            <div class="gift-image">😴</div>
-            <div class="gift-info">
-                <h3>Pijamas / Onesies</h3>
-                <div class="options-container">
-                    <a href="https://www.falabella.com.pe/falabella-pe/product/883596233/pijama-bebe-nino-pack-x2-polar-yamp/883596238" target="_blank" class="btn-option">Pack x2 Falabella</a>
-                    <a href="https://articulo.mercadolibre.com.pe/MPE-687275932-pijama-onesie-disfraz-bebe-michley-antialergico-stitch-_JM" target="_blank" class="btn-option">Disfraz Stich ML</a>
-                </div>
+          <div class="gift-image">
+            <img src="imgs/Pijama.webp" alt="Pijamas / Onesies" />
+          </div>
+          <div class="gift-info">
+            <h3>Pijamas / Onesies</h3>
+            <h6>
+              Tíos y tías, si están pensando en regalarme ropita para que me vea
+              muy guapo, les cuento que puede ser desde los 6 meses en adelante,
+              porque creceré rapidísimo y seré tan grandote como mi papá.
+            </h6>
+
+            <div class="options-container">
+              <a
+                href="https://www.falabella.com.pe/falabella-pe/product/883596233/pijama-bebe-nino-pack-x2-polar-yamp/883596238"
+                target="_blank"
+                class="btn-option"
+                >Pack x2 Falabella</a
+              >
+              <a
+                href="https://articulo.mercadolibre.com.pe/MPE-687275932-pijama-onesie-disfraz-bebe-michley-antialergico-stitch-_JM"
+                target="_blank"
+                class="btn-option"
+                >Disfraz Stich ML</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="pijamas_onesies"
+                onclick="reserveGift('pijamas_onesies', this)"
+              >
+                Reservar
+              </button>
             </div>
+          </div>
         </div>
 
         <div class="gift-card">
-            <div class="gift-image">🧶</div>
-            <div class="gift-info">
-                <h3>Colchas y Mantas</h3>
-                <div class="options-container">
-                    <a href="https://simple.ripley.com.pe/manta-baby-magica-luminosa-azul-pmp20001057861" target="_blank" class="btn-option">Manta Luminosa</a>
-                    <a href="https://www.falabella.com.pe/falabella-pe/product/139867884/Colcha-Bebe-Felpa-Ositos-Gris/139867885" target="_blank" class="btn-option">Felpa Falabella</a>
-                </div>
+          <div class="gift-image">
+            <img src="imgs/Colcha.webp" alt="Colchas y Mantas" />
+          </div>
+          <div class="gift-info">
+            <h3>Colchas y Mantas</h3>
+            <div class="options-container">
+              <a
+                href="https://simple.ripley.com.pe/manta-baby-magica-luminosa-azul-pmp20001057861"
+                target="_blank"
+                class="btn-option"
+                >Manta Luminosa</a
+              >
+              <a
+                href="https://www.falabella.com.pe/falabella-pe/product/139867884/Colcha-Bebe-Felpa-Ositos-Gris/139867885"
+                target="_blank"
+                class="btn-option"
+                >Felpa Falabella</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="colchas_mantas"
+                onclick="reserveGift('colchas_mantas', this)"
+              >
+                Reservar
+              </button>
             </div>
+          </div>
         </div>
 
         <div class="gift-card">
-            <div class="gift-image">🎒</div>
-            <div class="gift-info">
-                <h3>Pañalera Mochila</h3>
-                <div class="options-container">
-                    <a href="https://articulo.mercadolibre.com.pe/MPE-624829145-mochila-panalera-maternal-cuna-expandible-impermeable-3-en-1-_JM" target="_blank" class="btn-option">Mochila Cuna ML</a>
-                    <a href="https://juntoz.com/producto/panalera-mochila-bebe-cambiador-cuna-convertible-3-en-1-21534190" target="_blank" class="btn-option">Cambiador Juntoz</a>
-                </div>
+          <div class="gift-image">
+            <img src="imgs/Pañalera.webp" alt="Pañalera Mochila" />
+          </div>
+          <div class="gift-info">
+            <h3>Pañalera Mochila</h3>
+            <div class="options-container">
+              <a
+                href="https://articulo.mercadolibre.com.pe/MPE-624829145-mochila-panalera-maternal-cuna-expandible-impermeable-3-en-1-_JM"
+                target="_blank"
+                class="btn-option"
+                >Mochila Cuna ML</a
+              >
+              <a
+                href="https://juntoz.com/producto/panalera-mochila-bebe-cambiador-cuna-convertible-3-en-1-21534190"
+                target="_blank"
+                class="btn-option"
+                >Cambiador Juntoz</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="panalera_mochila"
+                onclick="reserveGift('panalera_mochila', this)"
+              >
+                Reservar
+              </button>
             </div>
+          </div>
         </div>
 
         <div class="gift-card">
-            <div class="gift-image">🧣</div>
-            <div class="gift-info">
-                <h3>Fular Ergonómico</h3>
-                <div class="options-container">
-                    <a href="https://simple.ripley.com.pe/fular-pre-armado-la-sonaja-bebe-beige-pmp20001121347" target="_blank" class="btn-option">Pre-armado Ripley</a>
-                    <a href="https://www.oechsle.pe/fular-new-born-nemito-100-algodon-beige-tostado-1001320292/p" target="_blank" class="btn-option">Algodón Oechsle</a>
-                </div>
+          <div class="gift-image">
+            <img src="imgs/FULAR.jpeg" alt="Fular Ergonómico" />
+          </div>
+          <div class="gift-info">
+            <h3>Fular Ergonómico</h3>
+            <div class="options-container">
+              <a
+                href="https://simple.ripley.com.pe/fular-pre-armado-la-sonaja-bebe-beige-pmp20001121347"
+                target="_blank"
+                class="btn-option"
+                >Pre-armado Ripley</a
+              >
+              <a
+                href="https://www.oechsle.pe/fular-new-born-nemito-100-algodon-beige-tostado-1001320292/p"
+                target="_blank"
+                class="btn-option"
+                >Algodón Oechsle</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="fular_ergonomico"
+                onclick="reserveGift('fular_ergonomico', this)"
+              >
+                Reservar
+              </button>
             </div>
+          </div>
         </div>
 
         <div class="gift-card">
-            <div class="gift-image">🥣</div>
-            <div class="gift-info">
-                <h3>Kit de Alimentación</h3>
-                <div class="options-container">
-                    <a href="https://www.promart.pe/kit-de-alimentacion-con-cuchara-silicona-5-piezas-lila-1001349432/p" target="_blank" class="btn-option">Set Silicona Promart</a>
-                </div>
+          <div class="gift-image">
+            <img src="imgs/kit.webp" alt="Kit de Alimentación" />
+          </div>
+          <div class="gift-info">
+            <h3>Kit de Alimentación</h3>
+            <div class="options-container">
+              <a
+                href="https://www.promart.pe/kit-de-alimentacion-con-cuchara-silicona-5-piezas-lila-1001349432/p"
+                target="_blank"
+                class="btn-option"
+                >Set Silicona Promart</a
+              >
+              <a
+                href="https://www.tiktok.com/@dzimportaciones/video/7561204716227611911"
+                target="_blank"
+                class="btn-option"
+                >Dz Importaciones</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="kit_alimentacion"
+                onclick="reserveGift('kit_alimentacion', this)"
+              >
+                Reservar
+              </button>
             </div>
+          </div>
         </div>
 
         <div class="gift-card">
-            <div class="gift-image">⚽</div>
-            <div class="gift-info">
-                <h3>Pelota Montessori</h3>
-                <div class="options-container">
-                    <a href="https://www.oechsle.pe/set-6-pelotas-sensoriales-didacticas-para-bebe-con-texturas-1001241870/p" target="_blank" class="btn-option">Set Sensorial Oechsle</a>
-                    <a href="https://www.babyyuval.pe/psicomotrocidad-sensorial/3458-pelota-montessori-la-tiendita-de-ale-rojo-y-blanco" target="_blank" class="btn-option">Baby Yuval</a>
-                </div>
+          <div class="gift-image">
+            <img src="imgs/pelotas.webp" alt="Pelota Montessori" />
+          </div>
+          <div class="gift-info">
+            <h3>Pelota Montessori</h3>
+            <div class="options-container">
+              <a
+                href="https://www.oechsle.pe/set-6-pelotas-sensoriales-didacticas-para-bebe-con-texturas-1001241870/p"
+                target="_blank"
+                class="btn-option"
+                >Set Sensorial Oechsle</a
+              >
+              <a
+                href="https://www.babyyuval.pe/psicomotrocidad-sensorial/3458-pelota-montessori-la-tiendita-de-ale-rojo-y-blanco"
+                target="_blank"
+                class="btn-option"
+                >Baby Yuval</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="pelota_montessori"
+                onclick="reserveGift('pelota_montessori', this)"
+              >
+                Reservar
+              </button>
             </div>
+          </div>
         </div>
 
         <div class="gift-card">
-            <div class="gift-image">🧩</div>
-            <div class="gift-info">
-                <h3>Piso de Actividades</h3>
-                <div class="options-container">
-                    <a href="https://www.oechsle.pe/piso-alfombra-plegable-reversible-ninos-bebes-1-8-mt-x-2-mt-1000678338/p" target="_blank" class="btn-option">Piso Reversible</a>
-                    <a href="https://www.mercadolibre.com.pe/pisos-alfombra-de-goma-eva-antigolpes-para-ninos-y-bebes-x20/up/MPEU2900745706" target="_blank" class="btn-option">Goma EVA ML</a>
-                </div>
+          <div class="gift-image">
+            <img src="imgs/Alfombra.webp" alt="Piso de Actividades" />
+          </div>
+          <div class="gift-info">
+            <h3>Piso de Actividades</h3>
+            <div class="options-container">
+              <a
+                href="https://www.oechsle.pe/piso-alfombra-plegable-reversible-ninos-bebes-1-8-mt-x-2-mt-1000678338/p"
+                target="_blank"
+                class="btn-option"
+                >Piso Reversible</a
+              >
+              <a
+                href="https://www.mercadolibre.com.pe/pisos-alfombra-de-goma-eva-antigolpes-para-ninos-y-bebes-x20/up/MPEU2900745706"
+                target="_blank"
+                class="btn-option"
+                >Goma EVA ML</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="piso_actividades"
+                onclick="reserveGift('piso_actividades', this)"
+              >
+                Reservar
+              </button>
             </div>
+          </div>
         </div>
 
         <div class="gift-card">
-            <div class="gift-image">⚙️</div>
-            <div class="gift-info">
-                <h3>Panel Montessori</h3>
-                <div class="options-container">
-                    <a href="https://juegosdidacticosperu.pe/producto/tablero-ocupado-montessori-11-en-1/" target="_blank" class="btn-option">Tablero Ocupado</a>
-                    <a href="https://www.mercadolibre.com.pe/tablero-de-actividades-juego-didatico/p/MPE2037763603" target="_blank" class="btn-option">Mercado Libre</a>
-                </div>
+          <div class="gift-image">
+            <img src="imgs/panel.png" alt="Panel Montessori" />
+          </div>
+          <div class="gift-info">
+            <h3>Panel Montessori</h3>
+            <div class="options-container">
+              <a
+                href="https://juegosdidacticosperu.pe/producto/tablero-ocupado-montessori-11-en-1/"
+                target="_blank"
+                class="btn-option"
+                >Tablero Ocupado</a
+              >
+              <a
+                href="https://www.mercadolibre.com.pe/tablero-de-actividades-juego-didatico/p/MPE2037763603"
+                target="_blank"
+                class="btn-option"
+                >Mercado Libre</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="panel_montessori"
+                onclick="reserveGift('panel_montessori', this)"
+              >
+                Reservar
+              </button>
             </div>
+          </div>
         </div>
 
         <div class="gift-card">
-            <div class="gift-image">📖</div>
-            <div class="gift-info">
-                <h3>Libro de Texturas</h3>
-                <div class="options-container">
-                    <a href="https://simple.ripley.com.pe/libro-textura-love-baby-juego-didatico-pmp20001081239" target="_blank" class="btn-option">Libro Love Baby</a>
-                    <a href="https://www.buscalibre.pe/libro-safari-de-textura-safari/9789878202495/p/55200308" target="_blank" class="btn-option">BuscaLibre</a>
-                </div>
+          <div class="gift-image">
+            <img src="imgs/libro-textura.webp" alt="Libro de Texturas" />
+          </div>
+          <div class="gift-info">
+            <h3>Libro de Texturas</h3>
+            <div class="options-container">
+              <a
+                href="https://simple.ripley.com.pe/libro-textura-love-baby-juego-didatico-pmp20001081239"
+                target="_blank"
+                class="btn-option"
+                >Libro Love Baby</a
+              >
+              <a
+                href="https://www.buscalibre.pe/libro-safari-de-textura-safari/9789878202495/p/55200308"
+                target="_blank"
+                class="btn-option"
+                >BuscaLibre</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="libro_texturas"
+                onclick="reserveGift('libro_texturas', this)"
+              >
+                Reservar
+              </button>
             </div>
+          </div>
         </div>
 
         <div class="gift-card">
-            <div class="gift-image">💧</div>
-            <div class="gift-info">
-                <h3>Alfombra Acuática</h3>
-                <div class="options-container">
-                    <a href="https://simple.ripley.com.pe/alfombra-agua-inflable-bebes-pmp20000645906" target="_blank" class="btn-option">Inflable Ripley</a>
-                    <a href="https://www.maternelle.pe/products/alfombra-de-agua-variados" target="_blank" class="btn-option">Maternelle</a>
-                </div>
+          <div class="gift-image">
+            <img src="imgs/alfombra-acuatica.webp" alt="Alfombra Acuática" />
+          </div>
+          <div class="gift-info">
+            <h3>Alfombra Acuática</h3>
+            <div class="options-container">
+              <a
+                href="https://simple.ripley.com.pe/alfombra-agua-inflable-bebes-pmp20000645906"
+                target="_blank"
+                class="btn-option"
+                >Inflable Ripley</a
+              >
+              <a
+                href="https://www.maternelle.pe/products/alfombra-de-agua-variados"
+                target="_blank"
+                class="btn-option"
+                >Maternelle</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="alfombra_acuatica"
+                onclick="reserveGift('alfombra_acuatica', this)"
+              >
+                Reservar
+              </button>
             </div>
+          </div>
         </div>
 
         <div class="gift-card">
-            <div class="gift-image">🛁📖</div>
-            <div class="gift-info">
-                <h3>Libros de Baño</h3>
-                <div class="options-container">
-                    <a href="https://www.iberolibrerias.com/hora-del-bano-mar-9789878200286-123061/p" target="_blank" class="btn-option">Ibero Librerías</a>
-                    <a href="https://nua.pe/products/libro-para-bano-saro" target="_blank" class="btn-option">Nua</a>
-                </div>
+          <div class="gift-image">
+            <img src="imgs/libro-baño.webp" alt="Libro de Baño" />
+          </div>
+          <div class="gift-info">
+            <h3>Libros de Baño</h3>
+            <div class="options-container">
+              <a
+                href="https://www.iberolibrerias.com/hora-del-bano-mar-9789878200286-123061/p"
+                target="_blank"
+                class="btn-option"
+                >Ibero Librerías</a
+              >
+              <a
+                href="https://nua.pe/products/libro-para-bano-saro"
+                target="_blank"
+                class="btn-option"
+                >Nua</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="libros_bano"
+                onclick="reserveGift('libros_bano', this)"
+              >
+                Reservar
+              </button>
             </div>
+          </div>
         </div>
 
         <div class="gift-card">
-            <div class="gift-image">💅</div>
-            <div class="gift-info">
-                <h3>Limador de Uñas Eléctrico</h3>
-                <div class="options-container">
-                    <a href="https://www.promart.pe/kit-cortaunas-para-bebe-manicure-pulidor-unas-1000311204/p" target="_blank" class="btn-option">Promart</a>
-                    <a href="https://www.plazavea.com.pe/kit-cortaunas-para-bebe-manicure-pulidor-unas-100538912/p" target="_blank" class="btn-option">Plaza Vea</a>
-                </div>
+          <div class="gift-image">
+            <img src="imgs/Cortauñas.webp" alt="Limador de Uñas Eléctrico" />
+          </div>
+          <div class="gift-info">
+            <h3>Limador de Uñas Eléctrico</h3>
+            <div class="options-container">
+              <a
+                href="https://www.promart.pe/kit-cortaunas-para-bebe-manicure-pulidor-unas-1000311204/p"
+                target="_blank"
+                class="btn-option"
+                >Promart</a
+              >
+              <a
+                href="https://www.plazavea.com.pe/kit-cortaunas-para-bebe-manicure-pulidor-unas-100538912/p"
+                target="_blank"
+                class="btn-option"
+                >Plaza Vea</a
+              >
+              <a
+                href="https://www.tiktok.com/@dzimportaciones/video/7561204716227611911"
+                target="_blank"
+                class="btn-option"
+                >Dz Importaciones</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="limador_unas_electrico"
+                onclick="reserveGift('limador_unas_electrico', this)"
+              >
+                Reservar
+              </button>
             </div>
+          </div>
         </div>
 
         <div class="gift-card">
-            <div class="gift-image">🔴</div>
-            <div class="gift-info">
-                <h3>Piscina de Pelotas</h3>
-                <div class="options-container">
-                    <a href="https://www.falabella.com.pe/falabella-pe/product/18562805/piscina-para-ninos-2-anillos-91x20cm-rosado/18562805" target="_blank" class="btn-option">Falabella</a>
-                    <a href="https://www.metro.pe/piscina-de-bolas-hinchable-multiusos-bestway-kick-n-swish-3-en-1-con-18-bolas-de-juego-1041459/p" target="_blank" class="btn-option">Metro</a>
-                </div>
+          <div class="gift-image">
+            <img src="imgs/piscina.webp" alt="Piscina de Pelotas" />
+          </div>
+          <div class="gift-info">
+            <h3>Piscina de Pelotas</h3>
+            <div class="options-container">
+              <a
+                href="https://www.falabella.com.pe/falabella-pe/product/18562805/piscina-para-ninos-2-anillos-91x20cm-rosado/18562805"
+                target="_blank"
+                class="btn-option"
+                >Falabella</a
+              >
+              <a
+                href="https://www.metro.pe/piscina-de-bolas-hinchable-multiusos-bestway-kick-n-swish-3-en-1-con-18-bolas-de-juego-1041459/p"
+                target="_blank"
+                class="btn-option"
+                >Metro</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="piscina_pelotas"
+                onclick="reserveGift('piscina_pelotas', this)"
+              >
+                Reservar
+              </button>
             </div>
+          </div>
+        </div>
+
+        <!-- Maracas / Sonajas -->
+        <div class="gift-card">
+          <div class="gift-image">
+            <img src="imgs/sonajero.webp" alt="Maracas / Sonajas" />
+          </div>
+          <div class="gift-info">
+            <h3>Maracas / Sonajas</h3>
+            <div class="options-container">
+              <a
+                href="https://www.tiktok.com/@dzimportaciones/video/7561204716227611911?_r=1&_t=ZS-93ek2zt7z08"
+                target="_blank"
+                class="btn-option"
+                >Video Referencia</a
+              >
+              <a
+                href="https://simple.ripley.com.pe/juguete-sonajero-molar-montessori-con-ojitos-para-bebe-pmp20001093710?color_80=multicolor&gad_campaignid=22585557829&gad_source=1&gclid=Cj0KCQiA-YvMBhDtARIsAHZuUzJzGzvdEXpuvAA6Gl-UR6WW1jjkqj_Nc78De6v4FfEoyidTOC5qw_AaAgCPEALw_wcB"
+                target="_blank"
+                class="btn-option"
+                >Ripley (Sonajero)</a
+              >
+              <a
+                href="https://simple.ripley.com.pe/set-sonaja-con-mordedor-para-bebes-animalitos-4-piezas-pmp20000877712?color_80=verde&gad_campaignid=22585557829&gad_source=1&gclid=Cj0KCQiA-YvMBhDtARIsAHZuUzLeZL3KRWi0z4jQpizQgIUMIVwYprz8K09mJ9SMKFbn5K0z13YODT0aAqHhEALw_wcB"
+                target="_blank"
+                class="btn-option"
+                >Ripley (Set x4)</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="maracas"
+                onclick="reserveGift('maracas', this)"
+              >
+                Reservar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Roller / Rodillo de estimulación -->
+        <div class="gift-card">
+          <div class="gift-image">
+            <img src="imgs/roller.webp" alt="Roller de estimulación" />
+          </div>
+          <div class="gift-info">
+            <h3>Roller (Rodillo de estimulación)</h3>
+            <div class="options-container">
+              <a
+                href="https://www.oechsle.pe/rodillo-selva-musical-playgro-1001244419/p?utm_source=google&utm_medium=cpc&utm_campaign=oechsle-202402-ao-sub-ecom-null-ao_oe-google_pmax-hygiene-conversiones-purchase-null-null-null-general-bombas&gad_source=1&gad_campaignid=22409832867&gclid=Cj0KCQiA-YvMBhDtARIsAHZuUzIY_wWBPAMDqmQsFR8Gxf_9ij5v-YCrzqgEvzKR9-3Fx5XLZtAyL40aAg0eEALw_wcB"
+                target="_blank"
+                class="btn-option"
+                >Oechsle</a
+              >
+              <a
+                href="https://www.mercadolibre.com.pe/rodillo-para-estimulacion-de-gateo-del-bebe-con-sonajero/up/MPEU3171487128?pdp_filters=item_id%3AMPE719270164&from=gshop&matt_tool=65564404&matt_word=&matt_source=google&matt_campaign_id=23396607261&matt_ad_group_id=192357300164&matt_match_type=&matt_network=g&matt_device=m&matt_creative=790081439990&matt_keyword=&matt_ad_position=&matt_ad_type=pla&matt_merchant_id=5590946990&matt_product_id=MPEU3171487128&matt_product_partition_id=2392712489461&matt_target_id=aud-2089277051211:pla-2392712489461&cq_src=google_ads&cq_cmp=23396607261&cq_net=g&cq_plt=gp&cq_med=pla&gad_source=1&gad_campaignid=23396607261&gclid=Cj0KCQiA-YvMBhDtARIsAHZuUzJcmGjiBwmieGVRyIJMR-jysKrWZqp6rXgbTRLsProaDLcuNst37PEaAooKEALw_wcB"
+                target="_blank"
+                class="btn-option"
+                >Mercado Libre</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="roller"
+                onclick="reserveGift('roller', this)"
+              >
+                Reservar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mesa de actividades -->
+        <div class="gift-card">
+          <div class="gift-image">
+            <img src="imgs/mesa.webp" alt="Mesa de Actividades" />
+          </div>
+          <div class="gift-info">
+            <h3>Mesa de Actividades</h3>
+            <div class="options-container">
+              <a
+                href="https://www.tiktok.com/@dzimportaciones/video/7561204716227611911?_r=1&_t=ZS-93ek2zt7z08"
+                target="_blank"
+                class="btn-option"
+                >Video Referencia</a
+              >
+              <a
+                href="https://www.falabella.com.pe/falabella-pe/product/881629066/Juguete-de-Bebe-Mesa-Musical-Winfun/881629066?kid=shopp69fc&gclsrc=aw.ds&gad_source=1&gad_campaignid=21209754652&gclid=Cj0KCQiA-YvMBhDtARIsAHZuUzKJdFFbYJciRGI2_yZ0bIfkKuYEZehi7Wv-cZUjNOoYdK7zFxAHegQaAhxpEALw_wcB"
+                target="_blank"
+                class="btn-option"
+                >Falabella</a
+              >
+              <a
+                href="https://www.mercadolibre.com.pe/mesa-de-actividades-didactica-multifuncional/up/MPEU3494905315#polycard_client=recommendations_pdp-v2p&reco_backend=ranker_retrieval_system_org&reco_model=coldstart_high_exposition&reco_client=pdp-v2p&reco_item_pos=0&reco_backend_type=low_level&reco_id=0e2aa396-5b24-4fe2-9263-4a790f06281c&wid=MPE855611324&sid=recos"
+                target="_blank"
+                class="btn-option"
+                >Mercado Libre</a
+              >
+              <a
+                href="https://www.tiktok.com/@dzimportaciones/video/7561204716227611911"
+                target="_blank"
+                class="btn-option"
+                >Dz Importaciones</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="mesa_actividades"
+                onclick="reserveGift('mesa_actividades', this)"
+              >
+                Reservar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bloque sensorial -->
+        <div class="gift-card">
+          <div class="gift-image">
+            <img src="imgs/bloque.webp" alt="Bloque Sensorial" />
+          </div>
+          <div class="gift-info">
+            <h3>Bloque Sensorial</h3>
+            <div class="options-container">
+              <a
+                href="https://simple.ripley.com.pe/cubo-de-liga-estimulacion-para-bebe-sensorial-pmp20001187875?color_80=multicolor&gad_campaignid=22585557829&gad_source=1&gclid=Cj0KCQiA-YvMBhDtARIsAHZuUzImrO3SFAZ5a7kpjqBNLXrUcr24vZcp_pNh8KPNXPMPOTwmbvZYvecaAss2EALw_wcB&s=mdco"
+                target="_blank"
+                class="btn-option"
+                >Ripley (Cubo liga)</a
+              >
+              <a
+                href="https://www.promart.pe/bloques-apilables-genericos-para-ninos-de-12-18-meses-1001193965/p?gad_source=1&gad_campaignid=17392014661&gclid=Cj0KCQiA-YvMBhDtARIsAHZuUzIGJ9nwXhk2iOTra-Z1GU-MVrOPeesrLn9Ldz_CeH-UQ2upctUmUx4aAqnuEALw_wcB"
+                target="_blank"
+                class="btn-option"
+                >Promart (Bloques)</a
+              >
+              <a
+                href="https://simple.ripley.com.pe/cubo-de-actividades-sensorial-6-en-1-para-bebes-juguete-educativo-musical-con-luces-pmp20001292007?color_80=multicolor&gad_campaignid=22585557829&gad_source=1&gclid=Cj0KCQiA-YvMBhDtARIsAHZuUzLruztj-ahs-KPsH0u1IuZ-bm9KMajzW1AZliQGRx35JvlcCBok48QaAn-9EALw_wcB"
+                target="_blank"
+                class="btn-option"
+                >Ripley (6 en 1)</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="bloque_sensorial"
+                onclick="reserveGift('bloque_sensorial', this)"
+              >
+                Reservar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pañales ecológicos -->
+        <div class="gift-card">
+          <div class="gift-image">
+            <img src="imgs/pañal.webp" alt="Pañales Ecológicos" />
+          </div>
+          <div class="gift-info">
+            <h3>Pañales Ecológicos</h3>
+            <div class="options-container">
+              <a
+                href="https://www.plazavea.com.pe/panal-infantil-mama-koala-ecologico-de-tela-unitalla-smt37-101747380/p?gad_source=1&gad_campaignid=21036918438&gclid=Cj0KCQiA-YvMBhDtARIsAHZuUzLjiq_2iuBzhS58EzuAXBeK9XKInpC4L-aZx3kyU_340JFBCtAC1RcaAvQpEALw_wcB"
+                target="_blank"
+                class="btn-option"
+                >Plaza Vea (Unitalla)</a
+              >
+              <a
+                href="https://www.promart.pe/panal-ecologico-de-tela-unitalla-babyloom-machu-picchu-1000287205/p?gad_source=1&gad_campaignid=17392014661&gclid=Cj0KCQiA-YvMBhDtARIsAHZuUzKduZhUQWidV18SgDdQzch6Aq1nu2n2HCU9MZ5pKPmRpt7uNgamRSUaArdaEALw_wcB"
+                target="_blank"
+                class="btn-option"
+                >Promart (Babyloom)</a
+              >
+              <a
+                href="https://www.plazavea.com.pe/panal-ecologico-de-tela-pack-x-3-unidades-mama-koala-smt08-101747383/p?gad_source=1&gad_campaignid=21036918438&gclid=Cj0KCQiA-YvMBhDtARIsAHZuUzIoe7EwJp3_oseSRBnIX3ZXKcpb0BZgxRSkCmG0-L7NVnSTRm-vWzMaAnOnEALw_wcB"
+                target="_blank"
+                class="btn-option"
+                >Plaza Vea (Pack x3)</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="panales_ecologicos"
+                onclick="reserveGift('panales_ecologicos', this)"
+              >
+                Reservar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Aspirador nasal -->
+        <div class="gift-card">
+          <div class="gift-image">
+            <img src="imgs/aspirador.webp" alt="Aspirador Nasal" />
+          </div>
+          <div class="gift-info">
+            <h3>Aspirador Nasal</h3>
+            <div class="options-container">
+              <a
+                href="https://www.mifarma.com.pe/producto/aspirador-nasal-happymam-nina/079883"
+                target="_blank"
+                class="btn-option"
+                >Mifarma</a
+              >
+              <a
+                href="https://www.plazavea.com.pe/aspiradora-nasal-electrico-para-bebe-101744320/p?gad_source=1&gad_campaignid=21036918438&gbraid=0AAAAADNWOn1QuHf2L9A3OyjPiTUjP50a6&gclid=Cj0KCQiA-YvMBhDtARIsAHZuUzKW0KYQe1woNGE_AL9Xb6jG1rTYqGTGR1kKUnLffpEIQ49ecHugkrEaAiROEALw_wcB"
+                target="_blank"
+                class="btn-option"
+                >Plaza Vea</a
+              >
+              <a
+                href="https://simple.ripley.com.pe/aspirador-nasal-electrico-para-bebe-nina-pmp20001025086?color_80=multicolor&gad_campaignid=22585557829&gad_source=1&gclid=Cj0KCQiA-YvMBhDtARIsAHZuUzKYeWxngaPlrWA07D_YH8srMpIkyw5ocOtrb8SSvmPE-ASGNuTDfV4aApIIEALw_wcB&s=mdco"
+                target="_blank"
+                class="btn-option"
+                >Ripley</a
+              >
+              <a
+                href="https://www.tiktok.com/@dzimportaciones/video/7561204716227611911"
+                target="_blank"
+                class="btn-option"
+                >Dz Importaciones</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="aspirador_nasal"
+                onclick="reserveGift('aspirador_nasal', this)"
+              >
+                Reservar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tangram -->
+        <div class="gift-card">
+          <div class="gift-image">
+            <img src="imgs/tangram.webp" alt="Tangram" />
+          </div>
+          <div class="gift-info">
+            <h3>Tangram</h3>
+            <div class="options-container">
+              <a
+                href="https://www.promart.pe/tangram-didactico-de-madera-20-x-20cm-1001193875/p?gad_source=1&gad_campaignid=17392014661&gclid=Cj0KCQiA-YvMBhDtARIsAHZuUzKRw_WP1f6Dq0uGUtETZjk1UyVl3qy2L8xxTL4ip7xBfuvXQ2TrEbwaAhQ9EALw_wcB"
+                target="_blank"
+                class="btn-option"
+                >Promart</a
+              >
+              <a
+                href="https://simple.ripley.com.pe/tangram-de-animales-numeros-y-frutas-pmp20000873128?color_80=multicolor&gad_campaignid=22585557829&gad_source=1&gclid=Cj0KCQiA-YvMBhDtARIsAHZuUzLHkuL4EXU_y2M-pa1K7AprnEnPPlLYiF_JZ_IWJZWhBYtRNUhtaTMaAtEUEALw_wcB&s=mdco"
+                target="_blank"
+                class="btn-option"
+                >Ripley</a
+              >
+              <button
+                class="btn-option"
+                data-gift-id="tangram"
+                onclick="reserveGift('tangram', this)"
+              >
+                Reservar
+              </button>
+            </div>
+          </div>
         </div>
 
         <div class="gift-card">
-            <div class="gift-image">🪑</div>
-            <div class="gift-info">
-                <h3>Muebles de Lactancia</h3>
-                <p>Art Decor Muebles</p>
-                <a href="tel:944289073" class="btn-option">📞 944 289 073</a>
-            </div>
+          <div class="gift-image">🪑</div>
+          <div class="gift-info">
+            <h3>Muebles de Lactancia</h3>
+            <p>Art Decor Muebles</p>
+            <a href="tel:944289073" class="btn-option">📞 944 289 073</a>
+            <button
+              class="btn-option"
+              data-gift-id="muebles_lactancia"
+              onclick="reserveGift('muebles_lactancia', this)"
+            >
+              Reservar
+            </button>
+          </div>
         </div>
-
+      </div>
     </div>
-</div>
 
-<footer>
-    <p>¡Los esperamos en el pantano con mucho cariño! • 2026</p>
-</footer>
+    <footer>
+      <p>¡Los esperamos en el pantano con mucho cariño! • 2026</p>
+    </footer>
 
-<script>
-    window.onload = () => document.getElementById('welcomeModal').style.display = 'flex';
-    const closeModal = () => document.getElementById('welcomeModal').style.display = 'none';
-</script>
-
-<script>
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwoqUq7AK-5O0WH7cHOuiByz9xgfEnDOXgIXseMSlC4hnKAeBTb70k2S5Kx6A72zeDhSA/exec";
-
-  async function reserveGift(id, btn) {
-    try {
-      btn.disabled = true;
-      const url = `${SCRIPT_URL}?action=reserve&id=${encodeURIComponent(id)}`;
-      const res = await fetch(url, { method: "GET", cache: "no-store" });
-
-      const text = await res.text();      // lee crudo
-      console.log("RAW RESPONSE:", text); // imprime crudo
-
-      let data;
-      try {
-        data = JSON.parse(text);
-      } catch (e) {
-        console.error("No es JSON válido:", e);
-        alert("La respuesta del servidor no es JSON. Revisa consola.");
-        btn.disabled = false;
-        return;
-      }
-
-      console.log("PARSED JSON:", data);
-
-      if (!data.ok) {
-        alert("No se pudo reservar: " + JSON.stringify(data));
-        btn.disabled = false;
-        return;
-      }
-
-      const card = btn.closest(".gift-card");
-      if (card) {
-        card.style.opacity = "0.55";
-        card.style.filter = "grayscale(1)";
-      }
-
-      btn.textContent = "Reservado";
-      btn.style.pointerEvents = "none";
-    } catch (e) {
-      console.error("FETCH ERROR:", e);
-      alert("Error de red o CORS. Mira la consola (F12).");
-      btn.disabled = false;
-    }
-  }
-</script>
-
-
-
-</body>
+    <script>
+      //window.onload = () =>        (document.getElementById("welcomeModal").style.display = "flex");
+      const closeModal = () =>
+        (document.getElementById("welcomeModal").style.display = "none");
+    </script>
+  </body>
 </html>
