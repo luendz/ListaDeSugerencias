@@ -291,9 +291,13 @@
 
       btn.disabled = true;
 
+      const BROWSER_ID = getBrowserId();
+
+      console.log("Intentando reservar regalo ID:", id, "con BROWSER_ID:", BROWSER_ID);
+
       const { data, error } = await supabase
         .from("Lista")
-        .update({ reserved: true, reserved_at: new Date().toISOString() })
+        .update({ reserved: true, reserved_at: new Date().toISOString(), reserved_by_browser_id: BROWSER_ID })
         .eq("id", id)
         .eq("reserved", false)
         .select("id");
@@ -387,6 +391,18 @@
     </div>
   `;
     }
+
+    function getBrowserId() {
+      let id = localStorage.getItem("ls_browser_id");
+      if (!id) {
+        id = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random());
+        localStorage.setItem("ls_browser_id", id);
+      }
+      return id;
+    }
+
+    const BROWSER_ID = getBrowserId();
+    console.log("BROWSER_ID:", BROWSER_ID);
 
 
     async function loadGifts() {
