@@ -251,6 +251,13 @@
       /* no recorta */
     }
 
+    .gift-desc{
+  margin: 6px 0 10px 0;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  color: var(--brown-vest);
+}
+
     /* Ajuste para que en celulares no se vea tan alto y se aprecie mejor el letrero */
     @media (max-width: 600px) {
       .main-banner {
@@ -353,20 +360,21 @@
       return `<img src="${src}" alt="${alt}" onerror="this.src='imgs/placeholder.webp'" />`;
     }
 
+function renderGiftCard(g) {
+  const title = g.title ?? g.nombre ?? "Sugerencia";
 
-    function renderGiftCard(g) {
-      const title = g.title ?? g.nombre ?? "Sugerencia";
+  const reservedClass = g.reserved ? " reserved" : "";
+  const reservedStyle = g.reserved
+    ? ' style="opacity:0.55;filter:grayscale(1);"'
+    : "";
 
-      const reservedClass = g.reserved ? " reserved" : "";
-      const reservedStyle = g.reserved
-        ? ' style="opacity:0.55;filter:grayscale(1);"'
-        : "";
+  const showReserve = g.btn_reserva === true;
+  const reserveDisabled = g.reserved ? "disabled" : "";
+  const reserveText = g.reserved ? "Reservado" : "Reservar";
 
-      const showReserve = g.btn_reserva === true;
-      const reserveDisabled = g.reserved ? "disabled" : "";
-      const reserveText = g.reserved ? "Reservado" : "Reservar";
+  const texto = (g.texto_sugerencia ?? "").trim();
 
-      return `
+  return `
     <div class="gift-card${reservedClass}"${reservedStyle}>
       <div class="gift-image">
         ${buildImage(g)}
@@ -375,22 +383,30 @@
       <div class="gift-info">
         <h3>${escapeHtml(title)}</h3>
 
+        ${
+          texto
+            ? `<p class="gift-desc">${escapeHtml(texto)}</p>`
+            : ""
+        }
+
         <div class="options-container">
           ${buildLinks(g)}
-          ${showReserve
-          ? `<button class="btn-option"
+          ${
+            showReserve
+              ? `<button class="btn-option"
                          data-gift-id="${escapeHtml(g.id)}"
                          onclick="reserveGift('${escapeHtml(g.id)}', this)"
                          ${reserveDisabled}>
-                   ${reserveText}
-                 </button>`
-          : ""
-        }
+                    ${reserveText}
+                  </button>`
+              : ""
+          }
         </div>
       </div>
     </div>
   `;
-    }
+}
+
 
     function getBrowserId() {
       let id = localStorage.getItem("ls_browser_id");
@@ -414,7 +430,7 @@
       const { data, error } = await supabase
         .from("Lista")
         .select(
-          "id,title,link_1,link_2,link_3,nombre_1,nombre_2,nombre_3,reserved,btn_reserva",
+          "id,title,link_1,link_2,link_3,nombre_1,nombre_2,nombre_3,reserved,btn_reserva,texto_sugerencia",
         )
         .order("orden", { ascending: true }); // si no tienes 'orden', elimina esta línea
 
