@@ -422,7 +422,8 @@ function renderGiftCard(g) {
         .select(
           "id,title,link_1,link_2,link_3,nombre_1,nombre_2,nombre_3,reserved,btn_reserva,texto_sugerencia",
         )
-        .order("reserved, orden", { ascending: false });
+        .order("reserved", { ascending: false })
+        .order("orden", { ascending: true });   
 
       console.log('data:', data);
 
