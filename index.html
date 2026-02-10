@@ -12,7 +12,6 @@
   <meta property="og:url" content="https://luendz.github.io/ListaDeSugerencias/" />
   <meta property="og:type" content="website" />
 
-  <!-- Opcional para WhatsApp/Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
 
   <title>Sugerencias Baby Shower - Luan</title>
@@ -120,7 +119,6 @@
 
     .gift-card {
       position: relative;
-      /* necesario para el overlay */
     }
 
     .gift-card {
@@ -148,10 +146,8 @@
       font-size: 2.2rem;
       font-weight: 900;
       color: rgba(92, 64, 51, 0.25);
-      /* marrón suave */
       letter-spacing: 4px;
       pointer-events: none;
-      /* no bloquea clicks */
       white-space: nowrap;
       z-index: 5;
     }
@@ -224,11 +220,8 @@
     .main-banner {
       background: url("banner.webp") center center;
       background-size: cover;
-      /* no recorta */
       background-color: var(--shrek-green);
-      /* relleno si sobra espacio */
       height: 350px;
-      /* más delgado (ajusta a gusto) */
       width: 100%;
       border-bottom: 8px solid var(--brown-vest);
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
@@ -248,7 +241,6 @@
       max-width: 90%;
       max-height: 90%;
       object-fit: contain;
-      /* no recorta */
     }
 
     .gift-desc{
@@ -258,13 +250,11 @@
   color: var(--brown-vest);
 }
 
-    /* Ajuste para que en celulares no se vea tan alto y se aprecie mejor el letrero */
+    
     @media (max-width: 600px) {
       .main-banner {
         height: 90px;
-        /* más delgado en celular */
-        background-size: contain;
-        /* igual, sin recorte */
+        background-size: contain; 
       }
     }
 
@@ -432,7 +422,7 @@ function renderGiftCard(g) {
         .select(
           "id,title,link_1,link_2,link_3,nombre_1,nombre_2,nombre_3,reserved,btn_reserva,texto_sugerencia",
         )
-        .order("orden,reserved", { ascending: true }); // si no tienes 'orden', elimina esta línea
+        .order("reserved", { ascending: true });
 
       console.log('data:', data);
 
