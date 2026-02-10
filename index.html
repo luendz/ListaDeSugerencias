@@ -424,6 +424,7 @@ function renderGiftCard(g) {
         )        
         .order("reserved", { ascending: false });
       
+      const FORCED_ID = "catalogos_contactos";
       if (data) {
         data.sort((a, b) => {
           if (a.id === FORCED_ID) return -1;
