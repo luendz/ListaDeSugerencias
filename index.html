@@ -422,9 +422,15 @@ function renderGiftCard(g) {
         .select(
           "id,title,link_1,link_2,link_3,nombre_1,nombre_2,nombre_3,reserved,btn_reserva,texto_sugerencia",
         )        
-        .order("orden", { ascending: true })
         .order("reserved", { ascending: false });
-
+      
+      if (data) {
+        data.sort((a, b) => {
+          if (a.id === FORCED_ID) return -1;
+          if (b.id === FORCED_ID) return 1;
+          return 0;
+        });
+      }
       console.log('data:', data);
 
       if (error) {
