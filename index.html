@@ -315,6 +315,46 @@
       btn.textContent = "Reservado";
     }
 
+    async function unreserveGift(id, btn) {
+      const ok = confirm("¿Quieres quitar la reserva de esta sugerencia?");
+      if (!ok) return;
+    
+      btn.disabled = true;
+    
+      const BROWSER_ID = getBrowserId();
+    
+      const { data, error } = await supabase
+        .from("Lista")
+        .update({
+          reserved: false,
+          reserved_at: null,
+          reserved_by_browser_id: null
+        })
+        .eq("id", id)
+        .eq("reserved", true)
+        .eq("reserved_by_browser_id", BROWSER_ID)
+        .select("id");
+    
+      if (error || !data || data.length === 0) {
+        alert("No se pudo desreservar (no es tu reserva o ya cambió).");
+        btn.disabled = false;
+        return;
+      }
+    
+      const card = btn.closest(".gift-card");
+      if (card) {
+        card.classList.remove("reserved");
+        card.style.opacity = "";
+        card.style.filter = "";
+      }
+    
+      btn.textContent = "Reservar";
+      btn.disabled = false;
+    
+      btn.setAttribute("onclick", `reserveGift('${escapeHtml(id)}', this)`);
+    }
+
+
     function escapeHtml(s) {
       return String(s ?? "")
         .replaceAll("&", "&amp;")
@@ -359,8 +399,26 @@ function renderGiftCard(g) {
     : "";
 
   const showReserve = g.btn_reserva === true;
-  const reserveDisabled = g.reserved ? "disabled" : "";
-  const reserveText = g.reserved ? "Reservado" : "Reservar";
+
+  const myBrowserId = getBrowserId();
+  const isReserved = g.reserved === true;
+  const isMine = isReserved && g.reserved_by_browser_id === myBrowserId;
+  
+  let buttonText = "Reservar";
+  let buttonDisabled = "";
+  let onClick = `reserveGift('${escapeHtml(g.id)}', this)`;
+  
+  if (isReserved && !isMine) {
+    buttonText = "Reservado";
+    buttonDisabled = "disabled";
+    onClick = "";
+  }
+  
+  if (isMine) {
+    buttonText = "Desreservar";
+    buttonDisabled = "";
+    onClick = `unreserveGift('${escapeHtml(g.id)}', this)`;
+  }
 
   const texto = (g.texto_sugerencia ?? "").trim();
 
@@ -385,9 +443,9 @@ function renderGiftCard(g) {
             showReserve
               ? `<button class="btn-option"
                          data-gift-id="${escapeHtml(g.id)}"
-                         onclick="reserveGift('${escapeHtml(g.id)}', this)"
-                         ${reserveDisabled}>
-                    ${reserveText}
+                         ${onClick ? `onclick="${onClick}"` : ""}
+                         ${buttonDisabled}>
+                    ${buttonText}
                   </button>`
               : ""
           }
@@ -419,12 +477,11 @@ function renderGiftCard(g) {
 
       const { data, error } = await supabase
         .from("Lista")
-        .select(
-          "id,title,link_1,link_2,link_3,nombre_1,nombre_2,nombre_3,reserved,btn_reserva,texto_sugerencia",
-        )        
+        .select("id,title,link_1,link_2,link_3,nombre_1,nombre_2,nombre_3,reserved,reserved_at,reserved_by_browser_id,btn_reserva,texto_sugerencia")      
         .order("reserved", { ascending: false });
       
       const FORCED_ID = "catalogos_contactos";
+      
       if (data) {
         data.sort((a, b) => {
           if (a.id === FORCED_ID) return -1;
@@ -432,6 +489,7 @@ function renderGiftCard(g) {
           return 0;
         });
       }
+      
       console.log('data:', data);
 
       if (error) {
