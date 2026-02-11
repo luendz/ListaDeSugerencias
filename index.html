@@ -312,7 +312,7 @@
         card.style.filter = "grayscale(1)";
       }
 
-      btn.textContent = "Desreservar";
+      btn.textContent = "Quitar reserva";
       btn.disabled = false;
       btn.setAttribute("onclick", `unreserveGift('${escapeHtml(id)}', this)`);
     }
@@ -338,7 +338,7 @@
         .select("id");
     
       if (error || !data || data.length === 0) {
-        alert("No se pudo desreservar (no es tu reserva o ya cambió).");
+        alert("No se pudo quitar reserva (no es tu reserva o ya cambió).");
         btn.disabled = false;
         return;
       }
@@ -417,7 +417,7 @@ function renderGiftCard(g) {
   }
   
   if (isMine) {
-    buttonText = "Desreservar";
+    buttonText = "Quitar reserva";
     buttonDisabled = "";
     onClick = `unreserveGift('${escapeHtml(g.id)}', this)`;
   }
