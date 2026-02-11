@@ -312,7 +312,9 @@
         card.style.filter = "grayscale(1)";
       }
 
-      btn.textContent = "Reservado";
+      btn.textContent = "Desreservar";
+      btn.disabled = false;
+      btn.setAttribute("onclick", `unreserveGift('${escapeHtml(id)}', this)`);
     }
 
     async function unreserveGift(id, btn) {
