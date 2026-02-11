@@ -480,7 +480,8 @@ function renderGiftCard(g) {
       const { data, error } = await supabase
         .from("Lista")
         .select("id,title,link_1,link_2,link_3,nombre_1,nombre_2,nombre_3,reserved,reserved_at,reserved_by_browser_id,btn_reserva,texto_sugerencia")      
-        .order("reserved", { ascending: false });
+        .order("reserved", { ascending: false })
+        .order("orden", { ascending: true });
       
       const FORCED_ID = "catalogos_contactos";
       
